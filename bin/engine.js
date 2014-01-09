@@ -1,4 +1,4 @@
-var Primus = require('Primus');
+var Primus = require('primus');
 
 module.exports = function(app, db, collection, done) {
   'use strict';
