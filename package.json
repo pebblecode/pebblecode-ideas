@@ -17,7 +17,9 @@
     "engine.io": "~0.8.0",
     "express": "~3.4.7",
     "engine.io-client": "~0.8.0",
-    "primus": "~1.5.2"
+    "primus": "~1.5.2",
+    "primus-redis": "~0.1.1-1",
+    "primus-emitter": "~2.0.5"
   },
   "devDependencies": {
     "matchdep": "~0.1.2",

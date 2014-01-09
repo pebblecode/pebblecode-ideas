@@ -15,13 +15,15 @@ module.exports = function(db, collection, socket) {
     collection.insert(newIdea, function(err, docs) {
 
       if (err) {
-        socket.write({event: 'error', data: err})
+        socket.send('error', err, function(data) {
+          console.log('error ack', data)
+        });
         return;
       }
 
-      console.log(socket);
-
-      socket.write({event: 'insert', data: docs});
+      socket.send('insert', docs, function(data) {
+        console.log('insert ack', data);
+      });
 
       res.set('Content-type', 'text/xml');
       res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Message>Thank you for submitting your question to pebblecode</Message></Response>');

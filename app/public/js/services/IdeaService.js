@@ -26,10 +26,7 @@ angular.module('pebbleidea')
     }
 
     Ideas.save = function(idea) {
-      $Primus.emit({
-        event: 'newIdea',
-        data: idea
-      });
+      $Primus.send('newIdea', idea);
     }
 
     $Primus.on('findAll', function(data) {

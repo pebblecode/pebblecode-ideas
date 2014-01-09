@@ -10,19 +10,12 @@ angular.module('pebbleidea')
     });
 
     $Primus.on = function(name, cb) {
-      this.primus.on('data', function(data) {
-        if (data.event === name) {
-          cb(data.data);
-        } else if (data.event === 'error') {
-          throw new Error(data);
-        }
-      });
+      this.primus.on(name, cb);
     }
 
-    $Primus.emit = function(data) {
-      this.primus.write(data);
+    $Primus.send = function(name, data) {
+      this.primus.send(name, data);
     }
-
 
     return $Primus;
 
