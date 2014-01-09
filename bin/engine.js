@@ -38,9 +38,11 @@ module.exports = function(app, db, collection, clients, done) {
           return;
         }
 
-        socket.send('insert', docs, function(data) {
-          console.log('insert ack', data);
-        });
+        clients.forEach(function(client) {
+          client.send('insert', docs, function(data) {
+            console.log('insert ack', data);
+          });
+        })        
       });
     });
 
