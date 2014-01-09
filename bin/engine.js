@@ -48,6 +48,10 @@ module.exports = function(app, db, collection, clients, done) {
 
 
     socket.on('close', function() {
+      if ((socket) && (clients.indexOf(socket.id) !== -1)) {
+        clients.splice(clients.indexOf(socket.id), 1);
+      }
+
       console.log('Connection closed');
     });
 
