@@ -3,7 +3,7 @@ var MongoClient = require('mongodb').MongoClient;
 module.exports = function(done) {
   
   var dev = 'mongodb://127.0.0.1:27017/test';
-  var live = '';
+  var live = 'mongodb://tanepiper:I5qZ7Cw2OqQq@ds061278.mongolab.com:61278/heroku_app21097990';
 
   MongoClient.connect(dev, function(err, db) {
 
