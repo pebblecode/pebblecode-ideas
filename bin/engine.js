@@ -1,7 +1,7 @@
 var Primus = require('primus');
 var Emitter = require('primus-emitter');
 
-module.exports = function(app, db, collection, done) {
+module.exports = function(app, db, collection, clients, done) {
   'use strict';
 
   var server = new Primus(app, {
@@ -13,6 +13,7 @@ module.exports = function(app, db, collection, done) {
 
   server.on('connection', function(socket) {
 
+    clients.push(socket);
 
     // Seed the front end with data right away
     collection.find().toArray(function(err, items) {
@@ -48,7 +49,7 @@ module.exports = function(app, db, collection, done) {
       console.log('Connection closed');
     });
 
-    done(socket);
+    done();
 
   });
 }

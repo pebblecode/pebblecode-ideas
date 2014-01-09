@@ -1,4 +1,4 @@
-module.exports = function(db, collection, socket) {
+module.exports = function(db, collection, clients) {
 
   return function(req, res, next) {
 
@@ -15,16 +15,18 @@ module.exports = function(db, collection, socket) {
     collection.insert(newIdea, function(err, docs) {
 
       if (err) {
-        socket.send('error', err, function(data) {
-          console.log('error ack', data)
-        });
-        return;
+        // socket.send('error', err, function(data) {
+        //   console.log('error ack', data)
+        // });
+        // return;
       }
 
-      socket.send('insert', docs, function(data) {
-        console.log('insert ack', data);
+      clients.forEach(function(socket) {
+        socket.send('insert', docs, function(data) {
+          console.log('insert ack', data);
+        });  
       });
-
+      
       res.set('Content-type', 'text/xml');
       res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Message>Thank you for submitting your question to pebblecode</Message></Response>');
       res.end();

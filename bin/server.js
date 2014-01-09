@@ -6,6 +6,8 @@ var express = require('express');
 
 var app = express();
 
+var clients = [];
+
 app.set('title', 'Pebblecode Ideas');
 app.set('port', process.env.PORT || 8001);
 app.set('host', '0.0.0.0');
@@ -30,8 +32,8 @@ var httpServer = http.createServer(app).listen(app.get('port'), app.get('host'),
 
 require('./db')(function(db, collection) {
 
-  require('./engine')(httpServer, db, collection, function(socket) {
-    app.post('/api/twilio', require('./routes/twilio')(db, collection, socket));  
+  require('./engine')(httpServer, db, collection, clients, function() {
+    app.post('/api/twilio', require('./routes/twilio')(db, collection, clients));  
   });  
 
 });
