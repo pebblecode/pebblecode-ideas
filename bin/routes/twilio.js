@@ -19,6 +19,8 @@ module.exports = function(db, collection, socket) {
         return;
       }
 
+      console.log('insert', docs)
+
       socket.write({event: 'insert', data: docs});
 
       res.set('Content-type', 'text/xml');
