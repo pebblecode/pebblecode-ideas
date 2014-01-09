@@ -18,6 +18,11 @@ module.exports = function(db, collection, socket) {
       }
 
       socket.write({event: 'insert', data: docs});
+
+
+      res.set('Content-type', 'text/xml');
+      res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Message>Thank you for submitting your question to pebblecode</Message></Response>');
+      res.end();
     });
 
   }
