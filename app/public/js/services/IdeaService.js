@@ -38,6 +38,7 @@ angular.module('pebbleidea')
     })
 
     $Primus.on('insert', function(data) {
+      console.log(data);
       Ideas.data.push(data[0]);
       $rootScope.$apply(function() { });
     })
