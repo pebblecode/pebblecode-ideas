@@ -37,9 +37,15 @@
       </div>
 
       <div class="container">
-        <ul ng-repeat="idea in ideas() | filter: filterCurrentID">
+        <ul ng-repeat="idea in reverse(ideas()) | filter: filterCurrentID ">
           <li>{{idea.text}}</li>
         </ul>
+
+        <div class="current-idea-container well">
+          <div class="current-idea" id="{{currentIdea()._id}}" leap-swipe-left="castVote('Yes', currentIdea()._id)" leap-swipe-right="castVote('No', currentIdea()._id)">
+            <h2>{{currentIdea().text}}</h2>
+          </div>
+        </div>
 
         <script type="text/ng-template" id="add-new-idea-form.html">
           <div class="modal-header">

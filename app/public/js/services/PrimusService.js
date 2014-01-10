@@ -13,8 +13,8 @@ angular.module('pebbleidea')
       this.primus.on(name, cb);
     }
 
-    $Primus.send = function(name, data) {
-      this.primus.send(name, data);
+    $Primus.send = function(name, data, cb) {
+      this.primus.send(name, data, cb);
     }
 
     return $Primus;

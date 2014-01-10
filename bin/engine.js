@@ -1,6 +1,8 @@
 var Primus = require('primus');
 var Emitter = require('primus-emitter');
 
+var ObjectId = require('mongodb').ObjectID;
+
 module.exports = function(app, db, collection, clients, done) {
   'use strict';
 
@@ -44,6 +46,17 @@ module.exports = function(app, db, collection, clients, done) {
           });
         })        
       });
+    });
+
+    socket.on('castVote', function(data, done) {
+      //console.log(data);
+      //var key = 'votes' + data.vote;
+
+      if (data.vote === 'Yes') {
+        collection.update({_id: new ObjectId(data.id)}, {$inc: { 'votesYes': 1 }}, {upsert:true, safe: true}, done);
+      } else {
+        collection.update({_id: new ObjectId(data.id)}, {$inc: { 'votesNo': 1 }}, {upsert:true, safe: true}, done);
+      }      
     });
 
 

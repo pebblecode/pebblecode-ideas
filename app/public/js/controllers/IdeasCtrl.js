@@ -1,18 +1,25 @@
 angular.module('pebbleidea')
   .controller('IdeasCtrl', ['$scope', '$rootScope', '$Primus', '$Ideas', '$modal', function($scope, $rootScope, $Primus, $Ideas, $modal) {
 
-    $scope.currentIdea = 0;
+    $scope.currentIdeaIndex = 0;
 
     $scope.ideas = $Ideas.get;
 
-    $scope.filterCurrentID = function() {
-      var i;
-      for (var i = 0, j = $scope.ideas.length; i < j; i++) {
-        if (i === $scope.currentIdea) {
-          return false;
-        }
-        return true;
+    $scope.currentIdea = function() {
+      return $scope.ideas()[$scope.currentIdeaIndex];
+    }
+
+    $scope.filterCurrentID = function(item) {
+      if ($scope.currentIdeaIndex === $scope.ideas().indexOf(item)) {
+        return false;
       }
+
+      return true;
+    }
+
+    $scope.reverse = function(array) {
+        var copy = [].concat(array);
+        return copy.reverse();
     }
 
     $scope.addNewIdea = function() {
@@ -22,8 +29,7 @@ angular.module('pebbleidea')
       });
 
       modalInstance.result.then(function(form) {
-        console.log(form);
-        
+
         var newIdea = {
           submittedBy: form.newIdeaName,
           text: form.newIdeaText,
@@ -36,7 +42,19 @@ angular.module('pebbleidea')
       });
     };
 
+    $scope.castVote = function(vote, id) {
+      console.log(vote, id);
 
+      $Primus.send('castVote', {
+        vote: vote,
+        id: id
+      }, function(docs) {
+        console.log(arguments);
+        if ($scope.currentIdeaIndex++ >= $scope.ideas().length) {
+         $scope.currentIdeaIndex = 0;
+        }  
+      });
+    }
 
 
   }]);
