@@ -32,9 +32,7 @@ var httpServer = http.createServer(app).listen(app.get('port'), app.get('host'),
 
 require('./db')(function(db, collection) {
 
-  require('./engine')(httpServer, db, collection, clients, function() {
-    app.post('/api/twilio', require('./routes/twilio')(db, collection, clients));  
-  });  
-
+  require('./engine')(httpServer, db, collection, clients);
+  app.post('/api/twilio', require('./routes/twilio')(db, collection, clients));
 });
 
