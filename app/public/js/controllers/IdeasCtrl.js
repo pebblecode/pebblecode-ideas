@@ -7,7 +7,7 @@ angular.module('pebbleidea')
 
     $scope.filterCurrentID = function() {
       var i;
-      for (var i = 0, j = $scope.ideas.length, i < j, i++) {
+      for (var i = 0, j = $scope.ideas.length; i < j; i++) {
         if (i === $scope.currentIdea) {
           return false;
         }
