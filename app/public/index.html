@@ -43,7 +43,6 @@
         <div class="row idea-list">
           <div class="idea" ng-repeat="idea in displayItems() | limitTo: 3">
             <div class="idea-text">{{idea.text}}</div>
-            <div class="idea-submitted">Submitted by {{idea.submittedDisplay}}</div>
           </div>
 
         </div>
@@ -54,7 +53,6 @@
 
             <div class="current-idea col-lg-8">
               <div class="idea-text tk-brandon-grotesque">{{currentIdea().text}}</div>
-              <div class="idea-submitted">Submitted by {{currentIdea().submittedDisplay}}</div>
             </div>
             <div class="vote-yes-button col-lg-2" ng-click="castVote('Yes', currentIdea()._id)">Y</div>
                    
@@ -90,21 +88,23 @@
           </div>
         </script>
 
+        <div class="row">
+          <div class="col-lg-12">
+            <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}"> </toaster-container>
+          </div>
+        </div>
+
         <div class="row sms-details">
           <div class="col-lg-2 image">
             <img src="/images/phone.svg" />
           </div>
           <div class="col-lg-10 text tk-brandon-grotesque">
             <p>Text [Idea] @ [Your Name] to 01887 451 030</p>
+            <p>OR</p>
+            <p><a ng-click='addNewIdea()' href="#">Add a new idea</a></p>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-lg-12">
-            <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}"> </toaster-container>
-          </div>
-        </div>
-        <a ng-click='addNewIdea()' href="#">Add a new idea</a>
       </div><!-- /.container -->
     </div>
 
