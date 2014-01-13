@@ -11,17 +11,14 @@ angular.module('pebbleidea')
       return $scope.ideas()[$scope.currentIdeaIndex];
     }
 
-    $scope.filterCurrentID = function(item) {
-      if ($scope.currentIdeaIndex === $scope.ideas().indexOf(item)) {
-        return false;
+    $scope.displayItems = function() {
+      var items = $scope.ideas().slice($scope.currentIdeaIndex + 1, $scope.currentIdeaIndex + 4);
+      if (items.length < 3) {
+        var itemsFromBeginningOfList = $scope.ideas().slice(0, 3 - items.length);
+        items = items.concat(itemsFromBeginningOfList);
       }
 
-      return true;
-    }
-
-    $scope.reverse = function(array) {
-        var copy = [].concat(array);
-        return copy.reverse();
+      return items.reverse();
     }
 
     $scope.addNewIdea = function() {
