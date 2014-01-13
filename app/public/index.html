@@ -38,7 +38,10 @@
 
       <div class="container">
         <ul ng-repeat="idea in reverse(ideas()) | filter: filterCurrentID ">
-          <li>{{idea.text}}</li>
+          <li>
+            <div>{{idea.text}}</div>
+            <div>Submitted by {{idea.submittedDisplay}}</div>
+          </li>
         </ul>
 
         <div class="current-idea-container well">

@@ -4,25 +4,26 @@ module.exports = function(db, collection, clients) {
 
   return function(req, res, next) {
 
-    console.log(req.body);
-
     var rawbody = req.body.Body;
     var submittedFrom = req.body.From;
 
-    var re = /(\w.+)@?.(\w.+)/gi
+    var splitterTokenIndex = rawbody.indexOf('@');
 
-    var matches = re.exec(rawbody);
+    var text = '';
+    var submittedDisplay = false;
 
-    if (matches.length === 0) {
-      console.log(matches);
-      return false;
+    if (splitterTokenIndex === -1) {
+      text = rawbody;
+    } else {
+      var text = rawbody.slice(0, splitterTokenIndex).trim();
+      var submittedDisplay = rawbody.slice(splitterTokenIndex + 1, rawbody.length).trim();
     }
 
     var newIdea = new Idea({
       submittedFrom: submittedFrom,
-      submittedDisplay: matches.length === 3 ? matches[2] : false,
-      text: matches[1]
-    })
+      submittedDisplay: submittedDisplay,
+      text: text
+    });
 
     collection.insert(newIdea, function(err, docs) {
 
