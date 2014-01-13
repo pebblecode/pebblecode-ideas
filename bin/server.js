@@ -12,7 +12,10 @@ app.set('title', 'Pebblecode Ideas');
 app.set('port', process.env.PORT || 8001);
 app.set('host', '0.0.0.0');
 
-app.use(express.bodyParser());
+// These replace express.bodyParser()
+app.use(express.urlencoded());
+app.use(express.json());
+
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(__dirname + '/../app/public'));
@@ -27,12 +30,14 @@ app.get('/admin', function(req, res, next) {
 });
 
 var httpServer = http.createServer(app).listen(app.get('port'), app.get('host'), function() {
-  console.log(app.get('title') + ' server running on ' + app.get('host') + ':' + app.get('port'));
+  //console.log(app.get('title') + ' server running on ' + app.get('host') + ':' + app.get('port'));
+
+  require('./db')(function(db, collection) {
+    require('./engine')(httpServer, db, collection, clients);
+    app.post('/api/twilio', require('./routes/twilio')(db, collection, clients));
+  });
+
 });
 
-require('./db')(function(db, collection) {
 
-  require('./engine')(httpServer, db, collection, clients);
-  app.post('/api/twilio', require('./routes/twilio')(db, collection, clients));
-});
 

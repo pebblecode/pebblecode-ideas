@@ -2,6 +2,8 @@ module.exports = function(db, collection, clients) {
 
   return function(req, res, next) {
 
+    console.log(req.body);
+
     var body = req.body.Body;
     var from = req.body.From;
 
