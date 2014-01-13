@@ -60,3 +60,13 @@ body {
 #toast-container.toast-bottom-full-width > div {
   width: 960px;
 }
+
+.sms-details {
+  margin-top: 30px;
+  background-color: #29ABE2;
+}
+
+.sms-details .text {
+  font-size: 2em;
+  font-family: "brandon gothic"
+}
