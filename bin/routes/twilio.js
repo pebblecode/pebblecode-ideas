@@ -1,4 +1,4 @@
-var Idea = require('./../lib/Idea');
+var Idea = require('./../../lib/Idea');
 
 module.exports = function(db, collection, clients) {
 
