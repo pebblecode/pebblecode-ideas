@@ -14,6 +14,16 @@
 
 
     <script src="vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+    <script type="text/javascript">
+      (function() {
+        var config = {
+          kitId: 'jgz5xsv',
+          scriptTimeout: 3000
+        };
+        var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+      })();
+    </script>
   </head>
   <body ng-app="pebbleidea">
     <!--[if lt IE 7]>
@@ -23,24 +33,14 @@
       <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">pebbleidea</a>
+            <a class="navbar-brand" href="#"><img src="/images/pebblecode-logo.svg" width="50%" height="50%" /></a>
+            <a class="navbar-brand pull-right" align="right" href="#"><img src="/images/az-logo.svg" width="50%" height="50%" /></a>
           </div>
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li><a ng-click='addNewIdea()' href="#">Add a new idea</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
         </div>
       </div>
 
       <div class="container">
-        <div class="idea-list">
-
+        <div class="row idea-list">
           <div class="idea" ng-repeat="idea in displayItems() | limitTo: 3">
             <div class="idea-text">{{idea.text}}</div>
             <div class="idea-submitted">Submitted by {{idea.submittedDisplay}}</div>
@@ -48,15 +48,17 @@
 
         </div>
 
-        <div class="current-idea-container" id="{{currentIdea()._id}}" leap-swipe-left="castVote('Yes', currentIdea()._id)" leap-swipe-right="castVote('No', currentIdea()._id)">
-          <div class="vote-no-button"></div>
+        <div class="row">
+          <div class="current-idea-container" id="{{currentIdea()._id}}" leap-swipe-left="castVote('Yes', currentIdea()._id)" leap-swipe-right="castVote('No', currentIdea()._id)">
+            <div class="vote-no-button col-lg-2" ng-click="castVote('No', currentIdea()._id)">X</div>   
 
-          <div class="current-idea">
-            <div class="idea-text">{{currentIdea().text}}</div>
-            <div class="idea-submitted">Submitted by {{currentIdea().submittedDisplay}}</div>
+            <div class="current-idea col-lg-8">
+              <div class="idea-text tk-brandon-grotesque">{{currentIdea().text}}</div>
+              <div class="idea-submitted">Submitted by {{currentIdea().submittedDisplay}}</div>
+            </div>
+            <div class="vote-yes-button col-lg-2" ng-click="castVote('Yes', currentIdea()._id)">Y</div>
+                   
           </div>
-
-          <div class="vote-no-button"></div>          
         </div>
 
         <script type="text/ng-template" id="add-new-idea-form.html">
@@ -88,8 +90,12 @@
           </div>
         </script>
 
-        <toaster-container> </toaster-container>
-
+        <div class="row">
+          <div class="col-lg-12">
+            <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}"> </toaster-container>
+          </div>
+        </div>
+        <a ng-click='addNewIdea()' href="#">Add a new idea</a>
       </div><!-- /.container -->
     </div>
 

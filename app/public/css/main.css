@@ -1,11 +1,23 @@
 body {
-  padding-top: 50px;
+  padding-top: 80px;
+}
+
+.navbar-inverse {
+  background-color: #EE5080;
+  border-color: #EE5080;
+  color: #fff;
+}
+
+.navbar-inverse a,
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
 }
 
 .idea {
   width: 80%;
   margin: 10px auto;
-  background: #ccc;
+  background: #C7C6CC;
   padding: 20px;
 }
 
@@ -21,16 +33,30 @@ body {
   margin: 10px auto;
 }
 
-.current-idea {
-  width: 80%;
+.current-idea-container .current-idea {
   margin: 0 auto;
-  background-color: pink;
+  background-color: #EE5080;
+  color: #fff;
   padding: 20px;
 }
 
-.current-idea .idea-text {
+.current-idea-container .current-idea .idea-text {
   width: 100%;
   height: 100%;
   text-align: justify;
   font-size: 3em;
+  text-transform: uppercase;
+}
+
+.current-idea-container .vote-no-button {
+  background-color: red;
+  height: 100%;
+}
+
+.current-idea-container .vote-yes-button {
+  background-color: green;
+}
+
+#toast-container.toast-bottom-full-width > div {
+  width: 960px;
 }
