@@ -35,9 +35,7 @@ module.exports = function(db, collection, clients) {
       }
 
       clients.forEach(function(socket) {
-        socket.send('insert', docs, function(data) {
-          console.log('insert ack', data);
-        });  
+        socket.send('insert', docs);  
       });
       
       res.set('Content-type', 'text/xml');

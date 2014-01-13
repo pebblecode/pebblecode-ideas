@@ -9,7 +9,9 @@
 
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/angular-ui/build/angular-ui.css">
+    <link rel="stylesheet" href="vendor/AngularJS-Toaster/toaster.css">
     <link rel="stylesheet" href="css/main.css">
+
 
     <script src="vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
   </head>
@@ -37,17 +39,24 @@
       </div>
 
       <div class="container">
-        <ul ng-repeat="idea in reverse(ideas()) | filter: filterCurrentID ">
-          <li>
-            <div>{{idea.text}}</div>
-            <div>Submitted by {{idea.submittedDisplay}}</div>
-          </li>
-        </ul>
+        <div class="idea-list">
 
-        <div class="current-idea-container well">
-          <div class="current-idea" id="{{currentIdea()._id}}" leap-swipe-left="castVote('Yes', currentIdea()._id)" leap-swipe-right="castVote('No', currentIdea()._id)">
-            <h2>{{currentIdea().text}}</h2>
+          <div class="idea" ng-repeat="idea in reverse(ideas()) | filter: filterCurrentID ">
+            <div class="idea-text">{{idea.text}}</div>
+            <div class="idea-submitted">Submitted by {{idea.submittedDisplay}}</div>
           </div>
+
+        </div>
+
+        <div class="current-idea-container" id="{{currentIdea()._id}}" leap-swipe-left="castVote('Yes', currentIdea()._id)" leap-swipe-right="castVote('No', currentIdea()._id)">
+          <div class="vote-no-button"></div>
+
+          <div class="current-idea">
+            <div class="idea-text">{{currentIdea().text}}</div>
+            <div class="idea-submitted">Submitted by {{currentIdea().submittedDisplay}}</div>
+          </div>
+
+          <div class="vote-no-button"></div>          
         </div>
 
         <script type="text/ng-template" id="add-new-idea-form.html">
@@ -59,12 +68,17 @@
             <form>
               <div class="form-item">
                 <label for="">Your Name</label>
-                <input type="text" ng-model="form.newIdeaName" />
+                <input type="text" ng-model="form.submittedDisplay" />
+              </div>
+
+              <div class="form-item">
+                <label for="">Your Mobile Number</label>
+                <input type="text" ng-model="form.submittedFrom" placeholder="+44" />
               </div>
 
               <div class="form-item">
                 <label for="">Your Idea</label>
-                <textarea ng-model="form.newIdeaText"></textarea>  
+                <textarea ng-model="form.text"></textarea>  
               </div>
           </div>
 
@@ -73,6 +87,8 @@
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
           </div>
         </script>
+
+        <toaster-container> </toaster-container>
 
       </div><!-- /.container -->
     </div>
@@ -86,6 +102,8 @@
 
     <script src="vendor/angular/angular.js"></script>
     <script src="vendor/angular-route/angular-route.js"></script>
+    <script src="vendor/angular-animate/angular-animate.js"></script>
+    <script src="vendor/AngularJS-Toaster/toaster.js"></script>
     <script src="vendor/angular-leap/build/angular-leap.js"></script>
     <script src="vendor/angular-ui/build/angular-ui.js"></script>
     <script src="vendor/angular-ui-bootstrap/dist/ui-bootstrap-0.9.0.js"></script>

@@ -10,10 +10,9 @@
   height: 0;
   margin-left: 2px;
   vertical-align: middle;
-  border-top:   @caret-width-base solid @dropdown-caret-color;
+  border-top:   @caret-width-base solid;
   border-right: @caret-width-base solid transparent;
   border-left:  @caret-width-base solid transparent;
-  content: "";
 }
 
 // The dropdown wrapper (div)
@@ -162,7 +161,7 @@
   // Reverse the caret
   .caret {
     border-top: 0;
-    border-bottom: 4px solid @dropdown-caret-color;
+    border-bottom: @caret-width-base solid;
     content: "";
   }
   // Different positioning for bottom up menu
@@ -172,3 +171,17 @@
     margin-bottom: 1px;
   }
 }
+
+
+// Component alignment
+//
+// Reiterate per navbar.less and the modified component alignment there.
+
+@media (min-width: @grid-float-breakpoint) {
+  .navbar-right {
+    .dropdown-menu {
+      .pull-right > .dropdown-menu();
+    }
+  }
+}
+

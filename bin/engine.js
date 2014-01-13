@@ -1,6 +1,7 @@
 var Primus = require('primus');
 var Emitter = require('primus-emitter');
 var ObjectId = require('mongodb').ObjectID;
+var Idea = require('./../lib/Idea');
 
 
 /**
@@ -38,31 +39,32 @@ module.exports = function(app, db, collection, clients) {
         return;
       }
 
-      socket.send('findAll', items, function(data) {
-        console.log('findAll ack', data);
-      })
+      socket.send('findAll', items);
     });
 
     // Listen for a new incoming idea from the frontend
     socket.on('newIdea', function(data) {
-      collection.insert(data, function(err, docs) {
+
+      var newIdea = new Idea(data);
+
+      collection.insert(newIdea, function(err, docs) {
         if (err) {
-          socket.send('error', err, function(data) {
-            console.log('error ack', data)
-          });
+          socket.send('error', err);
           return;
         }
 
         clients.forEach(function(client) {
-          client.send('insert', docs, function(data) {
-            console.log('insert ack', data);
-          });
-        })        
+          client.send('insert', docs);
+        });
       });
     });
 
     // Listen for an incoming vote
     socket.on('castVote', function(data, done) {
+      if (!data.id) {
+        done();
+        return;
+      }
 
       if (data.vote === 'Yes') {
         collection.update({_id: new ObjectId(data.id)}, {$inc: { 'votesYes': 1 }}, {upsert:true, safe: true}, done);
@@ -72,9 +74,10 @@ module.exports = function(app, db, collection, clients) {
     });
 
     // Handle a websocket being closed and remove the old client connection
-    socket.on('close', function() {
-      if ((socket) && (clients.indexOf(socket.id) !== -1)) {
-        clients.splice(clients.indexOf(socket.id), 1);
+    socket.on('end', function() {
+      var clientsSocketIndex = clients.indexOf(socket);
+      if ((socket) && (clientsSocketIndex !== -1)) {
+        clients.splice(clientsSocketIndex, 1);
       }
     });
   });

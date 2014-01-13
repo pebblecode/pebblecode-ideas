@@ -1,8 +1,9 @@
 var AddIdeaCtrl = function ($scope, $modalInstance) {
 
   $scope.form = {
-    newIdeaName: '',
-    newIdeaText: ''
+    submittedDisplay: '',
+    submittedFrom: '+44',
+    text: ''
   };
 
   $scope.ok = function () {

@@ -13,31 +13,25 @@ angular.module('pebbleidea')
       return Ideas.data;
     }
 
+    // When adding ideas from the front end
     Ideas.add = function(idea) {
-      Ideas.save(idea);
+      $Primus.send('newIdea', idea);
     }
 
     Ideas.del = function(index) {
       Ideas.data.slice(index, 1);
     }
 
-    Ideas.load = function() {
-
-    }
-
-    Ideas.save = function(idea) {
-      $Primus.send('newIdea', idea);
-    }
-
     $Primus.on('findAll', function(data) {
       Ideas.set(data);
-      $rootScope.$apply(function() { });
+      $rootScope.$apply(function() { return; });
     })
 
+    // Event when a new idea is added via the frontend or via SMS
     $Primus.on('insert', function(data) {
-      console.log(data);
       Ideas.data.push(data[0]);
-      $rootScope.$apply(function() { });
+      $rootScope.$broadcast('insert');
+      $rootScope.$apply(function() { return; });
     })
     
     return Ideas;
