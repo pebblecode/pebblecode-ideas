@@ -1,18 +1,28 @@
+var Idea = require('./../lib/Idea');
+
 module.exports = function(db, collection, clients) {
 
   return function(req, res, next) {
 
     console.log(req.body);
 
-    var body = req.body.Body;
-    var from = req.body.From;
+    var rawbody = req.body.Body;
+    var submittedFrom = req.body.From;
 
-     var newIdea = {
-      submittedBy: from,
-      text: body,
-      votesYes: 0,
-      votesNo: 0
-    };
+    var re = /(\w.+)@?.(\w.+)/gi
+
+    var matches = re.exec(rawbody);
+
+    if (matches.length === 0) {
+      console.log(matches);
+      return false;
+    }
+
+    var newIdea = new Idea({
+      submittedFrom: submittedFrom,
+      submittedDisplay: matches.length === 3 ? matches[2] : false,
+      text: matches[1]
+    })
 
     collection.insert(newIdea, function(err, docs) {
 
