@@ -44,9 +44,11 @@ angular.module('pebbleidea')
         id: id
       }, function(docs) {
 
-        //if (vote === 'Yes') {
-          toaster.pop('success', "Vote Cast", "Your vote has been cast");
-        //}
+        if (vote === 'Yes') {
+          toaster.pop('success', "Vote Cast", "Your YES vote has been cast");
+        } else if (vote === 'No') {
+          toaster.pop('error', "Vote Cast", "Your NO vote has been cast");
+        }
 
         if ($scope.currentIdeaIndex++ >= $scope.ideas().length - 1) {
          $scope.currentIdeaIndex = 0;

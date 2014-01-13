@@ -41,7 +41,7 @@
       <div class="container">
         <div class="idea-list">
 
-          <div class="idea" ng-repeat="idea in reverse(ideas()) | filter: filterCurrentID ">
+          <div class="idea" ng-repeat="idea in reverse(ideas()) | filter: filterCurrentID | limitTo: 3">
             <div class="idea-text">{{idea.text}}</div>
             <div class="idea-submitted">Submitted by {{idea.submittedDisplay}}</div>
           </div>
