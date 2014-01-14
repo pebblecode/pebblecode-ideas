@@ -27,10 +27,10 @@ angular.module('pebbleidea')
     $scope.recievedNewIdea = function(event, idea) {
       $scope.newIdeaRecieved = true;
       $scope.newIdeaAdded = idea;
-      // $timeout(function() {
-      //   $scope.newIdeaRecieved = false;
-      //   $scope.newIdeaAdded = {};
-      // }, 5000);
+      $timeout(function() {
+        $scope.newIdeaRecieved = false;
+        $scope.newIdeaAdded = {};
+      }, 5000);
     };
 
     $scope.$on('insert', $scope.recievedNewIdea);
