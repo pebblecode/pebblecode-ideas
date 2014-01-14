@@ -41,18 +41,6 @@ nav[role='navigation'] .logo.az {
   text-align: right;
 }
 
-.slanted-bottom {
-  position: fixed;
-  z-index: 1000;
-  top: 60px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 0;
-  border-top: 40px solid #EE5080;
-  border-right: 1080px solid transparent;
-}
-
 footer[role='footer'] {
   position: fixed;
   bottom: 0;
@@ -72,7 +60,7 @@ footer[role='footer'] {
   color: #555555;
   padding: 1em;
   font-weight: 500;
-  font-size: 1.4em;
+  font-size: 28px;
 }
 
 .current-idea {
@@ -86,7 +74,7 @@ footer[role='footer'] {
   height: 200px;
   font-weight: 900;
   font-style: italic;
-  font-size: 2.3em;
+  font-size: 40px;
   text-transform: uppercase;
   text-align: center;
 }
@@ -112,12 +100,14 @@ footer[role='footer'] {
 .sms-details,
 .new-message {
   background-color: #29ABE2;
+  width: 100%;
+  height: 100%;
 }
 
 .sms-details .inner,
 .new-message .inner {
   color: #fff;
-  font-size: 1.4em;
+  font-size: 40px;
   font-weight: 900;
   text-align: center;
   width: 60%;
@@ -125,7 +115,7 @@ footer[role='footer'] {
 }
 
 .new-message .inner {
-  font-size: 1em;
+  font-size: 30px;
 }
 
 .sms-details .inner img,
@@ -134,6 +124,10 @@ footer[role='footer'] {
   margin-right: 30px;
   width: 80px;
   height: 80px;
+}
+
+.sms-details .inner p {
+  margin: 0;
 }
 
 
