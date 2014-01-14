@@ -1,0 +1,37 @@
+{
+  "name": "Responsive",
+  "version": "2.3.1",
+  "homepage": "https://github.com/JimBobSquarePants/Responsive",
+  "authors": [
+    "James South"
+  ],
+  "license": "MIT",
+  "main": [
+    "./rel/responsive.js",
+    "./rel/responsive.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "builder",
+    "src",
+    "tests"
+  ],
+  "dependencies": {
+    "html5shiv": "3.7.0",
+    "jquery": "2.0.3",
+    "jquery-legacy": "jquery#1.10",
+    "respond": "1.4.2"
+  },
+  "_release": "2.3.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.3.1",
+    "commit": "3ea9edcae6f61d5124d9ef8b533efb0c9ac6d0d4"
+  },
+  "_source": "git://github.com/JimBobSquarePants/Responsive.git",
+  "_target": "~2.3.1",
+  "_originalSource": "responsive",
+  "_direct": true
+}

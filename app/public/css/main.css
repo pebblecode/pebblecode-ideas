@@ -2,6 +2,64 @@ body {
   padding-top: 80px;
 }
 
+nav[role='navigation'] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #EE5080;
+  border-color: #EE5080;
+  color: #fff;
+}
+
+.idea .idea-text {
+  background: #C7C6CC;
+  padding: 1em;
+  margin-bottom: 1em;
+  font-weight: 500;
+}
+
+.current-idea .idea-text {
+  background-color: #EE5080;
+  color: #fff;
+  padding: 1em;
+  height: 150px;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.5em;
+}
+
+.current-idea .vote-button {
+  height: 150px;
+}
+
+.current-idea .vote-button.no {
+  background-size: 75px 150px;
+  background-image: url('/images/no.svg');
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+.current-idea .vote-button.yes {
+  background-size: 75px 150px;
+  background-image: url('/images/yes.svg');
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+.sms-details {
+  margin-top: 10px;
+  background-color: #29ABE2;
+  font-weight: 500;
+}
+
+
+/*
+body {
+  padding-top: 80px;
+}
+
 .navbar-inverse {
   background-color: #EE5080;
   border-color: #EE5080;
@@ -69,3 +127,4 @@ body {
 .sms-details .text {
   font-size: 2em;
 }
+*/

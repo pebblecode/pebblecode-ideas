@@ -9,7 +9,7 @@ var app = express();
 var clients = [];
 
 app.set('title', 'Pebblecode Ideas');
-app.set('port', process.env.PORT || 8001);
+app.set('port', process.env.PORT || 8000);
 app.set('host', '0.0.0.0');
 
 // These replace express.bodyParser()
