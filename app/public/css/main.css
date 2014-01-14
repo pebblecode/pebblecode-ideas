@@ -64,13 +64,13 @@ footer[role='footer'] {
 }
 
 .current-idea {
-  margin: 0 20px;
+  margin: 0 auto;
+  width: 1360px;
 }
 
 .current-idea .idea-text {
   background-color: #EE5080;
   color: #fff;
-  padding: 1em;
   height: 200px;
   font-weight: 900;
   font-style: italic;
