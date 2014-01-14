@@ -27,33 +27,36 @@
 
       <nav role="navigation">
         <div class="container">
-          <div class="row">
-            <div class="col-l-6">
-              <img src="/images/pebblecode-logo.svg" width="50%" height="50%" />
+          <div class="row logos">
+            <div class="col-m-6 logo pebblecode">
+              <a ng-click='addNewIdea()' href="#">
+                <img src="/images/pebblecode-logo.svg" width="235px" height="60px" />
+              </a>
             </div>
-            <div class="col-l-6">
-              <img src="/images/az-logo.svg" width="50%" height="50%" />
+            <div class="col-m-6 logo az">
+              <img src="/images/az-logo.svg" width="235px" height="60px" />
             </div>
           </div>
         </div>
       </nav>
+      <div class="slanted-bottom"></div>
 
       <main role="application" class="container">
-        <div class="idea row" ng-repeat="idea in displayItems() | limitTo: 3">
-          <div class="idea-text tk-museo-sans col-l-10 offset-l-1">{{idea.text}}</div>
+        <div class="idea row" ng-repeat="idea in displayItems() | limitTo: 3" ng-animate="'ideas'">
+          <div class="idea-text tk-museo-sans col-m-12">{{idea.text}}</div>
         </div>
 
         
         <div class="current-idea row no-gutter" id="{{currentIdea()._id}}" leap-swipe-left="castVote('Yes', currentIdea()._id)" leap-swipe-right="castVote('No', currentIdea()._id)">
-          <div class="vote-button no col-l-2" ng-click="castVote('No', currentIdea()._id)">
+          <div class="vote-button no col-m-1" ng-click="castVote('No', currentIdea()._id)">
             
           </div>
 
-          <div class="idea-text col-l-8 tk-brandon-grotesque">
+          <div class="idea-text col-m-10 tk-brandon-grotesque">
             {{currentIdea().text}}
           </div>
 
-          <div class="vote-button yes col-l-2" ng-click="castVote('Yes', currentIdea()._id)">
+          <div class="vote-button yes col-m-1" ng-click="castVote('Yes', currentIdea()._id)">
             
           </div>
         </div>
@@ -64,11 +67,9 @@
 
       <footer role="footer" class="container">
         <section class="row sms-details no-gutter tk-museo-sans">
-          <div class="col-l-8 offset-l-2 inner">
+          <div class="col-m-8 offset-l-2 inner">
             <img src="/images/phone.svg" />
             <p>Text [Idea] @ [Your Name] to 01887 451 030</p>
-            <p>OR</p>
-            <p><a ng-click='addNewIdea()' href="#">Add a new idea</a></p>
           </div>
         </section>
       </footer>

@@ -1,5 +1,5 @@
 angular.module('pebbleidea',
-  ['angular-leap', 'ngRoute', 'ui.bootstrap', 'toaster'])
+  ['angular-leap', 'ngRoute', 'ui.bootstrap', 'toaster', 'ngAnimate'])
   .config(function() {
     'use strict';
     

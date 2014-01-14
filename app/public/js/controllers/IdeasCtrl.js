@@ -8,6 +8,8 @@ angular.module('pebbleidea')
 
     $scope.ideas = $Ideas.get;
 
+    $scope.slideDirection = '';
+
     $scope.currentIdea = function() {
       var idea = $scope.ideas()[$scope.currentIdeaIndex];
       if (!idea) {
@@ -49,15 +51,7 @@ angular.module('pebbleidea')
           toaster.pop('error', 'Vote Casting Error', err);
           return;
         }
-
-        if (vote === 'Yes') {
-          toaster.pop('success', 'Vote Casting', 'Your YES vote has been cast');
-        } else if (vote === 'No') {
-          toaster.pop('success', 'Vote Casting', 'Your NO vote has been cast');
-        } else {
-          toaster.pop('error', 'Vote Casting Error', 'The type of vote passed is not valid');
-        }
-
+        
         if ($scope.currentIdeaIndex++ >= $scope.ideas().length - 1) {
           $scope.currentIdeaIndex = 0;
         }
