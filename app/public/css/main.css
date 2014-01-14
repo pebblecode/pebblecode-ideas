@@ -47,7 +47,7 @@ footer[role='footer'] {
   left: 0;
   right: 0;
   z-index: 1000;
-  height: 100px;
+  height: 150px;
 }
 
 .idea {
@@ -126,7 +126,8 @@ footer[role='footer'] {
   height: 80px;
 }
 
-.sms-details .inner p {
+.sms-details .inner p,
+.new-message .inner p {
   margin: 0;
 }
 
