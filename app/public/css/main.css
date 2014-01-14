@@ -58,7 +58,7 @@ footer[role='footer'] {
 
 .idea .idea-text {
   color: #555555;
-  padding: 1em;
+  padding: 0 28px;
   font-weight: 500;
   font-size: 28px;
 }
@@ -160,78 +160,3 @@ footer[role='footer'] {
 .toaster.ng-leave-active{
     bottom: -200px;
 }
-
-
-/*
-body {
-  padding-top: 80px;
-}
-
-.navbar-inverse {
-  background-color: #EE5080;
-  border-color: #EE5080;
-  color: #fff;
-}
-
-.navbar-inverse a,
-.navbar-inverse .navbar-brand,
-.navbar-inverse .navbar-nav > li > a {
-  color: #fff;
-}
-
-.idea {
-  width: 80%;
-  margin: 10px auto;
-  background: #C7C6CC;
-  padding: 20px;
-}
-
-.idea .idea-text {
-  width: 100%;
-  height: 100%;
-  text-align: justify;
-  font-size: 2em;
-}
-
-.current-idea-container {
-  width: 100%;
-  margin: 10px auto;
-}
-
-.current-idea-container .current-idea {
-  margin: 0 auto;
-  background-color: #EE5080;
-  color: #fff;
-  padding: 20px;
-}
-
-.current-idea-container .current-idea .idea-text {
-  width: 100%;
-  height: 100%;
-  text-align: justify;
-  font-size: 3em;
-  text-transform: uppercase;
-}
-
-.current-idea-container .vote-no-button {
-  background-color: red;
-  height: 100%;
-}
-
-.current-idea-container .vote-yes-button {
-  background-color: green;
-}
-
-#toast-container.toast-bottom-full-width > div {
-  width: 960px;
-}
-
-.sms-details {
-  margin-top: 30px;
-  background-color: #29ABE2;
-}
-
-.sms-details .text {
-  font-size: 2em;
-}
-*/
