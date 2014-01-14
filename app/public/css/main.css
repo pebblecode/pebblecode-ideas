@@ -124,6 +124,10 @@ footer[role='footer'] {
   margin: 0 auto;
 }
 
+.new-message .inner {
+  font-size: 1em;
+}
+
 .sms-details .inner img,
 .new-message .inner img {
   float: left;

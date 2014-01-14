@@ -12,7 +12,7 @@ angular.module('pebbleidea')
 
     $scope.newIdeaRecieved = false;
 
-    $scope.newIdeaAdded = '';
+    $scope.newIdeaAdded = {};
 
     $scope.slideDirection = '';
 
@@ -25,12 +25,11 @@ angular.module('pebbleidea')
     };
 
     $scope.recievedNewIdea = function(event, idea) {
-      console.log(arguments);
       $scope.newIdeaRecieved = true;
-      $scope.newIdeaAdded = idea.text + ' from ' + idea.submittedDisplay;
+      $scope.newIdeaAdded = idea;
       $timeout(function() {
         $scope.newIdeaRecieved = false;
-        $scope.newIdeaAdded = '';
+        $scope.newIdeaAdded = {};
       }, 5000);
     };
 
