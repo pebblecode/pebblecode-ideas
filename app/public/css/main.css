@@ -84,17 +84,17 @@ footer[role='footer'] {
 }
 
 .current-idea .vote-button.no {
-  background-size: cover;
+  background-size: contain;
   background-image: url('/images/no-2.svg');
   background-repeat: no-repeat;
-  background-position: 2px center;
+  background-position: 12px center;
 }
 
 .current-idea .vote-button.yes {
-  background-size: cover;
+  background-size: contain;
   background-image: url('/images/yes-2.svg');
   background-repeat: no-repeat;
-  background-position: -2px center;
+  background-position: -12px center;
 }
 
 .sms-details,
