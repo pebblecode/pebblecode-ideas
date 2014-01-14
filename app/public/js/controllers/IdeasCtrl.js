@@ -25,6 +25,7 @@ angular.module('pebbleidea')
     };
 
     $scope.recievedNewIdea = function(idea) {
+      console.log(arguments);
       $scope.newIdeaRecieved = true;
       $scope.newIdeaAdded = idea.text + ' from ' + idea.submittedDisplay;
       $timeout(function() {
