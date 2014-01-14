@@ -44,6 +44,9 @@
     "xit": true,
 
     "expect": true,
-    "beforeEach": true
+    "beforeEach": true,
+
+    "angular": true,
+    "Primus": true
   }
 }

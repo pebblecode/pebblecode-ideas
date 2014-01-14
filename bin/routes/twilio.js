@@ -1,6 +1,7 @@
 var Idea = require('./../../lib/Idea');
 
 module.exports = function(db, collection, clients) {
+  'use strict';
 
   return function(req, res, next) {
 
@@ -15,8 +16,8 @@ module.exports = function(db, collection, clients) {
     if (splitterTokenIndex === -1) {
       text = rawbody;
     } else {
-      var text = rawbody.slice(0, splitterTokenIndex).trim();
-      var submittedDisplay = rawbody.slice(splitterTokenIndex + 1, rawbody.length).trim();
+      text = rawbody.slice(0, splitterTokenIndex).trim();
+      submittedDisplay = rawbody.slice(splitterTokenIndex + 1, rawbody.length).trim();
     }
 
     var newIdea = new Idea({
@@ -35,7 +36,7 @@ module.exports = function(db, collection, clients) {
       }
 
       clients.forEach(function(socket) {
-        socket.send('insert', docs);  
+        socket.send('insert', docs);
       });
       
       res.set('Content-type', 'text/xml');
@@ -43,5 +44,5 @@ module.exports = function(db, collection, clients) {
       res.end();
     });
 
-  }
-}
+  };
+};

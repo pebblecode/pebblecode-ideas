@@ -1,5 +1,8 @@
 angular.module('pebbleidea')
-  .factory('$Ideas', ['$Primus', '$rootScope', function($Primus, $rootScope) {
+  .factory('$Ideas',
+  ['$Primus', '$rootScope',
+  function($Primus, $rootScope) {
+    'use strict';
 
     var Ideas = {};
 
@@ -7,33 +10,34 @@ angular.module('pebbleidea')
 
     Ideas.set = function(data) {
       Ideas.data = data;
-    }
+    };
 
     Ideas.get = function() {
       return Ideas.data;
-    }
+    };
 
-    // When adding ideas from the front end
     Ideas.add = function(idea) {
-      $Primus.send('newIdea', idea);
-    }
+      Ideas.data.push(idea);
+    };
 
     Ideas.del = function(index) {
       Ideas.data.slice(index, 1);
-    }
+    };
+
+    Ideas.addNewIdeaFromForm = function(form) {
+      $Primus.send('newIdea', form);
+    };
 
     $Primus.on('findAll', function(data) {
       Ideas.set(data);
-      $rootScope.$apply(function() { return; });
-    })
+    });
 
     // Event when a new idea is added via the frontend or via SMS
     $Primus.on('insert', function(data) {
-      Ideas.data.push(data[0]);
+      Ideas.add(data[0]);
       $rootScope.$broadcast('insert');
-      $rootScope.$apply(function() { return; });
-    })
+    });
     
     return Ideas;
 
-  }])
+  }]);

@@ -1,21 +1,36 @@
 angular.module('pebbleidea')
-  .factory('$Primus', ['$rootScope', '$timeout', function($rootScope, $timeout) {
+  .factory('$Primus', ['$rootScope', function($rootScope) {
+    'use strict';
 
+    var socket = $rootScope.socket;
 
-    var $Primus = {}
+    var onCallback = function (callback, args) {
+      $rootScope.$apply(function () {
+        callback.apply(socket, args);
+      });
+    };
 
-    window.primus = $Primus.primus = new Primus({
-      host: window.location.hostname,
-      port: window.location.port
-    });
+    var emitCallback = function (callback, args) {
+      $rootScope.$apply(function () {
+        if (callback) {
+          callback.apply(socket, args);
+        }
+      });
+    };
 
-    $Primus.on = function(name, cb) {
-      this.primus.on(name, cb);
-    }
+    var $Primus = {};
 
-    $Primus.send = function(name, data, cb) {
-      this.primus.send(name, data, cb);
-    }
+    $Primus.on = function(name, callback) {
+      socket.on(name, function() {
+        onCallback(callback, arguments);
+      });
+    };
+
+    $Primus.send = function(name, data, callback) {
+      socket.send(name, angular.fromJson(angular.toJson(data)), function () {
+        emitCallback(callback, arguments);
+      });
+    };
 
     return $Primus;
 

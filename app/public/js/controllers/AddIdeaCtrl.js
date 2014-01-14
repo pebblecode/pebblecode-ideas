@@ -1,16 +1,21 @@
-var AddIdeaCtrl = function ($scope, $modalInstance) {
+angular.module('pebbleidea')
+  .controller('AddIdeaCtrl',
+  ['$scope', '$modalInstance',
+  function($scope, $modalInstance) {
+    'use strict';
 
-  $scope.form = {
-    submittedDisplay: '',
-    submittedFrom: '+44',
-    text: ''
-  };
+    $scope.form = {
+      submittedDisplay: '',
+      submittedFrom: '+44',
+      text: ''
+    };
 
-  $scope.ok = function () {
-    $modalInstance.close($scope.form);
-  };
+    $scope.ok = function () {
+      $modalInstance.close($scope.form);
+    };
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-};
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+
+  }]);

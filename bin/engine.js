@@ -34,7 +34,7 @@ module.exports = function(app, db, collection, clients) {
     collection.find().toArray(function(err, items) {
       if (err) {
         socket.send('error', err, function(data) {
-          console.log('error ack', data)
+          console.log('error ack', data);
         });
         return;
       }
@@ -62,7 +62,7 @@ module.exports = function(app, db, collection, clients) {
     // Listen for an incoming vote
     socket.on('castVote', function(data, done) {
       if (!data.id) {
-        done();
+        done('No valid ID was passed to vote');
         return;
       }
 
@@ -70,7 +70,7 @@ module.exports = function(app, db, collection, clients) {
         collection.update({_id: new ObjectId(data.id)}, {$inc: { 'votesYes': 1 }}, {upsert:true, safe: true}, done);
       } else {
         collection.update({_id: new ObjectId(data.id)}, {$inc: { 'votesNo': 1 }}, {upsert:true, safe: true}, done);
-      }      
+      }
     });
 
     // Handle a websocket being closed and remove the old client connection
@@ -81,4 +81,4 @@ module.exports = function(app, db, collection, clients) {
       }
     });
   });
-}
+};

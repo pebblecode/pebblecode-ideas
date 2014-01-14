@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var http = require('http');
 var fs = require('fs');
@@ -30,8 +30,6 @@ app.get('/admin', function(req, res, next) {
 });
 
 var httpServer = http.createServer(app).listen(app.get('port'), app.get('host'), function() {
-  //console.log(app.get('title') + ' server running on ' + app.get('host') + ':' + app.get('port'));
-
   require('./db')(function(db, collection) {
     require('./engine')(httpServer, db, collection, clients);
     app.post('/api/twilio', require('./routes/twilio')(db, collection, clients));
