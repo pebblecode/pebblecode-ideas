@@ -10,7 +10,9 @@ angular.module('pebbleidea')
 
     $scope.ideas = $Ideas.get;
 
-    $scope.newIdea = false;
+    $scope.newIdeaRecieved = false;
+
+    $scope.newIdeaAdded = '';
 
     $scope.slideDirection = '';
 
@@ -22,10 +24,12 @@ angular.module('pebbleidea')
       return idea;
     };
 
-    $scope.recievedNewIdea = function() {
-      $scope.newIdea = true;
+    $scope.recievedNewIdea = function(idea) {
+      $scope.newIdeaRecieved = true;
+      $scope.newIdeaAdded = idea.text + ' from ' + idea.submittedDisplay;
       $timeout(function() {
-        $scope.newIdea = false;
+        $scope.newIdeaRecieved = false;
+        $scope.newIdeaAdded = '';
       }, 5000);
     };
 

@@ -35,7 +35,7 @@ angular.module('pebbleidea')
     // Event when a new idea is added via the frontend or via SMS
     $Primus.on('insert', function(data) {
       Ideas.add(data[0]);
-      $rootScope.$broadcast('insert');
+      $rootScope.$broadcast('insert', data[0]);
     });
     
     return Ideas;
