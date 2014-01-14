@@ -8,7 +8,6 @@
     <meta name="description" content="Pebblecode Ideas App">
 
     <link rel="stylesheet" href="/vendor/responsive/rel/responsive.css" />
-    <link rel="stylesheet" href="/vendor/AngularJS-Toaster/toaster.css">
     <link rel="stylesheet" href="/css/main.css">
 
     <script src="/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -22,7 +21,7 @@
       })();
     </script>
   </head>
-  <body ng-app="pebbleidea">
+  <body ng-app="pebbleidea" id="app">
     <div class="wrapper" ng-controller="IdeasCtrl">
 
       <nav role="navigation">
@@ -34,15 +33,18 @@
               </a>
             </div>
             <div class="col-m-6 logo az">
-              <img src="/images/az-logo.svg" width="235px" height="60px" />
+              <a ng-click="fullScreen()" href="#">
+                <img src="/images/az-logo.svg" width="235px" height="60px" />
+              </a>
             </div>
           </div>
         </div>
+        <a ng-click="recievedNewIdea()" href="#">test</a>
       </nav>
-      <div class="slanted-bottom"></div>
+      <!--<div class="slanted-bottom"></div>-->
 
       <main role="application" class="container">
-        <div class="idea row" ng-repeat="idea in displayItems() | limitTo: 3" ng-animate="'ideas'">
+        <div class="idea row" ng-repeat="idea in displayItems()" ng-animate="'ideas'">
           <div class="idea-text tk-museo-sans col-m-12">{{idea.text}}</div>
         </div>
         <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}"> </toaster-container>
@@ -63,12 +65,24 @@
         </div>
       </div>
 
-      <footer role="footer" class="container">
+      <footer role="footer" class="container toaster" ng-if="newIdea == false">
+
         <section class="row sms-details no-gutter tk-museo-sans">
           <div class="col-m-12 outer">
             <div class="inner">
               <img src="/images/phone.svg" />
               <p>Text [Idea] @ [Your Name] to 01887 451 030</p>
+            </div>
+          </div>
+        </section>
+      </footer>
+
+      <footer role="footer" class="container toaster" ng-if="newIdea == true">
+        <section class="row new-message no-gutter tk-museo-sans">
+          <div class="col-m-12 outer">
+            <div class="inner">
+              <img src="/images/phone.svg" />
+              <p>A new idea has been added! You can now vote on it.</p>
             </div>
           </div>
         </section>

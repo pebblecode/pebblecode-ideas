@@ -1,9 +1,16 @@
-.wrapper {
-  padding-top: 60px;
+html, body {
+  background-color: #fff;
 }
 
-.container {
-  max-width: 960px;
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  padding-top: 100px;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 nav[role='navigation'] {
@@ -12,8 +19,13 @@ nav[role='navigation'] {
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: #EE5080;
-  border-color: #EE5080;
+  background-color: transparent;
+  background-image: url('/images/nav-bg.svg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  height: 150px;
+  max-width: 1920px;
+  margin: 0 auto;
   color: #fff;
 }
 
@@ -50,13 +62,17 @@ footer[role='footer'] {
   height: 100px;
 }
 
-.idea .idea-text {
+.idea {
   background: #C7C6CC;
+  margin-bottom: 1em;
+  height: 100px;
+}
+
+.idea .idea-text {
   color: #555555;
   padding: 1em;
-  margin-bottom: 1em;
   font-weight: 500;
-  height: 70px;
+  font-size: 1.4em;
 }
 
 .current-idea {
@@ -70,7 +86,7 @@ footer[role='footer'] {
   height: 200px;
   font-weight: 900;
   font-style: italic;
-  font-size: 1.5em;
+  font-size: 2.3em;
   text-transform: uppercase;
   text-align: center;
 }
@@ -93,11 +109,13 @@ footer[role='footer'] {
   background-position: -2px center;
 }
 
-.sms-details {
+.sms-details,
+.new-message {
   background-color: #29ABE2;
 }
 
-.sms-details .inner {
+.sms-details .inner,
+.new-message .inner {
   color: #fff;
   font-size: 1.4em;
   font-weight: 900;
@@ -106,78 +124,42 @@ footer[role='footer'] {
   margin: 0 auto;
 }
 
-.sms-details .inner img {
+.sms-details .inner img,
+.new-message .inner img {
   float: left;
   margin-right: 30px;
   width: 80px;
   height: 80px;
 }
 
+
+
+
 /* Animations */
-.items-enter, 
-.items-leave
+
+/** Toaster **/
+.toaster.ng-enter, 
+.toaster.ng-leave
 { 
-    -webkit-transition: 900ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-    -moz-transition: 900ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-    -ms-transition: 900ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-    -o-transition: 900ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-    transition: 900ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+    -webkit-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+    -moz-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+    -ms-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+    -o-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+    transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
 } 
  
-.items-enter {
-    top: -100%;
+.toaster.ng-enter {
+    bottom: -200px;
 }
-.items-enter.items-enter-active {
-    top: 0;
+.toaster.ng-enter-active {
+    bottom: 0;
 }
  
-.items-leave {
-    top: 0;
+.toaster.ng-leave {
+    bottom: 0;
 }
-.items-leave.items-leave-active{
-    top: 100%;
-}
-
-.slide-left.ng-enter,
-.slide-left.ng-leave,
-.slide-right.ng-enter,
-.slide-right.ng-leave {
-  -webkit-transition: 0.5s ease-in-out ;
-  -moz-transition: 0.5s ease-in-out ;
-  -o-transition: 0.5s ease-in-out ;
-  transition: 0.5s ease-in-out ;
-  position: absolute;
-  width: 100%;
-}
-.slide-left.ng-enter {
-  z-index: 100;
-  left: 100%;
-}
-.slide-left.ng-enter.ng-enter-active {
-  left: 0;
-  right: 0;
-}
-.slide-left.ng-leave {
-  z-index: 101;
-  left: 0;
-}
-.slide-left.ng-leave.ng-leave-active {
-  left: -100%;
-}
-
-.slide-right.ng-enter {
-  z-index: 100;
-  left: -100%;
-}
-.slide-right.ng-enter.ng-enter-active {
-  left: 0;
-}
-.slide-right.ng-leave {
-  z-index: 101;
-  left: 0;
-}
-.slide-right.ng-leave.ng-leave-active {
-  left: 100%;
+.toaster.ng-leave-active{
+    bottom: -200px;
 }
 
 
