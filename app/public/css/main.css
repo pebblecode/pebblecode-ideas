@@ -50,8 +50,17 @@ nav[role='navigation'] {
 
 .sms-details {
   margin-top: 10px;
+}
+
+.sms-details .inner {
   background-color: #29ABE2;
   font-weight: 500;
+  padding: 1em;
+}
+
+.sms-details .inner img {
+  float: left;
+  margin-right: 30px;
 }
 
 
