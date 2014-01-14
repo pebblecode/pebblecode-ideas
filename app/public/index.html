@@ -45,25 +45,23 @@
         <div class="idea row" ng-repeat="idea in displayItems() | limitTo: 3" ng-animate="'ideas'">
           <div class="idea-text tk-museo-sans col-m-12">{{idea.text}}</div>
         </div>
-
-        
-        <div class="current-idea row no-gutter" id="{{currentIdea()._id}}" leap-swipe-left="castVote('Yes', currentIdea()._id)" leap-swipe-right="castVote('No', currentIdea()._id)">
-          <div class="vote-button no col-m-1" ng-click="castVote('No', currentIdea()._id)">
-            
-          </div>
-
-          <div class="idea-text col-m-10 tk-brandon-grotesque">
-            {{currentIdea().text}}
-          </div>
-
-          <div class="vote-button yes col-m-1" ng-click="castVote('Yes', currentIdea()._id)">
-            
-          </div>
-        </div>
-
         <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}"> </toaster-container>
 
       </main>
+
+      <div class="current-idea row no-gutter" id="{{currentIdea()._id}}" leap-swipe-left="castVote('Yes', currentIdea()._id)" leap-swipe-right="castVote('No', currentIdea()._id)">
+        <div class="vote-button no col-m-1" ng-click="castVote('No', currentIdea()._id)">
+          
+        </div>
+
+        <div class="idea-text col-m-10 tk-brandon-grotesque">
+          {{currentIdea().text}}
+        </div>
+
+        <div class="vote-button yes col-m-1" ng-click="castVote('Yes', currentIdea()._id)">
+          
+        </div>
+      </div>
 
       <footer role="footer" class="container">
         <section class="row sms-details no-gutter tk-museo-sans">

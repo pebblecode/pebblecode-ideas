@@ -59,6 +59,10 @@ footer[role='footer'] {
   height: 70px;
 }
 
+.current-idea {
+  margin: 0 20px;
+}
+
 .current-idea .idea-text {
   background-color: #EE5080;
   color: #fff;
@@ -79,14 +83,14 @@ footer[role='footer'] {
   background-size: cover;
   background-image: url('/images/no-2.svg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 2px center;
 }
 
 .current-idea .vote-button.yes {
   background-size: cover;
   background-image: url('/images/yes-2.svg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: -2px center;
 }
 
 .sms-details {
