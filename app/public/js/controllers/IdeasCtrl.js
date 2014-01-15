@@ -1,12 +1,12 @@
 angular.module('pebbleidea')
   .controller('IdeasCtrl',
-  ['$scope', '$rootScope', '$Primus', '$Ideas', '$modal', '$timeout',
-  function($scope, $rootScope, $Primus, $Ideas, $modal, $timeout) {
+  ['$scope', '$rootScope', '$Primus', '$Ideas', '$modal', '$timeout', '$Vote',
+  function($scope, $rootScope, $Primus, $Ideas, $modal, $timeout, $Vote) {
     'use strict';
 
     $scope.currentIdeaIndex = 0;
 
-    $scope.totalIdeasToDisplay = 5;
+    $scope.totalIdeasToDisplay = 3;
 
     $scope.ideas = $Ideas.get;
 
@@ -62,20 +62,12 @@ angular.module('pebbleidea')
       });
     };
 
-    $scope.castVote = function(vote, id) {
-      $Primus.send('castVote', {
-        vote: vote,
-        id: id
-      }, function(err, docs) {
-        if (err) {
-          console.error(err);
-          toaster.pop('error', 'Vote Casting Error', err);
-          return;
-        }
-
+    $scope.$on('castVote', function(event, data) {
+      $Vote.castVote(data).then(function(updatedVote) {
         if ($scope.currentIdeaIndex++ >= $scope.ideas().length - 1) {
           $scope.currentIdeaIndex = 0;
         }
       });
-    };
+    });
+
   }]);

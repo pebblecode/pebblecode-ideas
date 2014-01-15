@@ -12,7 +12,7 @@ var Idea = require('./../lib/Idea');
  *  Once an incoming connection has been recieved, the socket is added
  *  to an in-memory connection pool which allows us to communicate with the
  *  clients available to us.
- *  
+ *
  *  All other functions within the connection state connect the app with the database
  */
 module.exports = function(app, db, collection, clients) {
@@ -61,15 +61,15 @@ module.exports = function(app, db, collection, clients) {
 
     // Listen for an incoming vote
     socket.on('castVote', function(data, done) {
-      if (!data.id) {
+      if (!data.idea._id) {
         done('No valid ID was passed to vote');
         return;
       }
 
       if (data.vote === 'Yes') {
-        collection.update({_id: new ObjectId(data.id)}, {$inc: { 'votesYes': 1 }}, {upsert:true, safe: true}, done);
+        collection.update({_id: new ObjectId(data.idea._id)}, {$inc: { 'votesYes': 1 }}, {upsert:true, safe: true}, done);
       } else {
-        collection.update({_id: new ObjectId(data.id)}, {$inc: { 'votesNo': 1 }}, {upsert:true, safe: true}, done);
+        collection.update({_id: new ObjectId(data.idea._id)}, {$inc: { 'votesNo': 1 }}, {upsert:true, safe: true}, done);
       }
     });
 
