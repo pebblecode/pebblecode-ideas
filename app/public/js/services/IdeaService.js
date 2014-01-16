@@ -4,40 +4,63 @@ angular.module('pebbleidea')
   function($Primus, $rootScope) {
     'use strict';
 
-    var Ideas = {};
+    var IdeasService = {};
 
-    Ideas.data = [];
+    IdeasService.ideas = [];
 
-    Ideas.set = function(data) {
-      Ideas.data = data;
+    IdeasService.totalToDisplay = 5;
+
+    IdeasService.displayIndex = 0;
+
+    IdeasService.newIdea = {};
+
+
+    IdeasService.set = function(ideas) {
+      IdeasService.ideas = ideas;
     };
 
-    Ideas.get = function() {
-      return Ideas.data;
+    IdeasService.getAll = function() {
+      return IdeasService.ideas;
     };
 
-    Ideas.add = function(idea) {
-      Ideas.data.push(idea);
+    IdeasService.getNext = function() {
+      if (IdeasService.displayIndex++ >= IdeasService.ideas.length - 1) {
+        IdeasService.displayIndex = 0;
+      }
+
+      return Idea.ideas[IdeasService.displayIndex];
+    }
+
+    IdeasService.getPrev = function() {
+      if (IdeasService.displayIndex-- < 0) {
+        IdeasService.displayIndex = IdeasService.ideas().length - 1;
+      }
+
+      return Idea.ideas[IdeasService.displayIndex];
+    }
+
+    IdeasService.add = function(idea) {
+      IdeasService.ideas.push(idea);
     };
 
-    Ideas.del = function(index) {
-      Ideas.data.slice(index, 1);
+    IdeasService.del = function(index) {
+      IdeasService.ideas.slice(index, 1);
     };
 
-    Ideas.addNewIdeaFromForm = function(form) {
+    IdeasService.addNewIdeaFromForm = function(form) {
       $Primus.send('newIdea', form);
     };
 
-    $Primus.on('findAll', function(data) {
-      Ideas.set(data);
+    $Primus.on('findAll', function(ideas) {
+      IdeasService.set(ideas);
     });
 
     // Event when a new idea is added via the frontend or via SMS
-    $Primus.on('insert', function(data) {
-      Ideas.add(data[0]);
-      $rootScope.$broadcast('insert', data[0]);
+    $Primus.on('insert', function(idea) {
+      IdeasService.add(idea[0]);
+      $rootScope.$broadcast('insert', idea[0]);
     });
-    
-    return Ideas;
+
+    return IdeasService;
 
   }]);

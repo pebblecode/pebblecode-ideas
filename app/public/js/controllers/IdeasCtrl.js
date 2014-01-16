@@ -8,7 +8,7 @@ angular.module('pebbleidea')
 
     $scope.totalIdeasToDisplay = 3;
 
-    $scope.ideas = $Ideas.get;
+    $scope.ideas = $Ideas.getAll;
 
     $scope.newIdeaRecieved = false;
 
