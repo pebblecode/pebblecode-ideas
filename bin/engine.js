@@ -33,13 +33,11 @@ module.exports = function(app, db, collection, clients) {
     // Seed the front end with data right away
     collection.find().toArray(function(err, items) {
       if (err) {
-        socket.send('error', err, function(data) {
-          console.log('error ack', data);
-        });
+        socket.send('error', err);
         return;
       }
 
-      socket.send('findAll', items);
+      socket.send('initData', items);
     });
 
     // Listen for a new incoming idea from the frontend

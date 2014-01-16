@@ -1,0 +1,19 @@
+.ideas {
+  position: static;
+  max-width: 1920px;
+  margin-top: 100px;
+}
+
+.ideas .idea {
+  width: 1440px;
+  margin: 10px auto;
+  background: #C7C6CC;
+  height: 100px;
+}
+
+.ideas .idea .idea-text {
+  color: #555555;
+  padding: 0 28px;
+  font-weight: 500;
+  font-size: 28px;
+}

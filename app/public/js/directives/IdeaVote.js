@@ -6,31 +6,32 @@ angular.module('pebbleidea')
       replace: true,
       templateUrl: '/templates/idea-vote.html',
       scope: {
-        idea: '='
+        voteItem: '='
       },
       controller: function($scope, $element) {
 
-        $element.addClass('slide-vote');
 
-        $scope.castVote = function(vote, id) {
-          
+        // $element.addClass('slide-vote');
 
-          if (vote === 'Yes') {
-            $animate.addClass($element, 'yes-vote', function() {
+        // $scope.castVote = function(vote, id) {
+        //   console.log($scope);
 
-              $scope.$emit('castVote', { vote: vote, idea: $scope.idea});
+        //   if (vote === 'Yes') {
+        //     $animate.addClass($element, 'yes-vote', function() {
 
-              $animate.removeClass($element, 'yes-vote');
-            });
+        //       $scope.$emit('castVote', { vote: vote, idea: $scope.idea});
 
-          } else {
-            $animate.addClass($element, 'no-vote', function() {
-              $scope.$emit('castVote', { vote: vote, idea: $scope.idea});
+        //       $animate.removeClass($element, 'yes-vote');
+        //     });
 
-              $animate.removeClass($element, 'no-vote');
-            });
-          }
-        };
+        //   } else {
+        //     $animate.addClass($element, 'no-vote', function() {
+        //       $scope.$emit('castVote', { vote: vote, idea: $scope.idea});
+
+        //       $animate.removeClass($element, 'no-vote');
+        //     });
+        //   }
+        // };
 
       }
     }

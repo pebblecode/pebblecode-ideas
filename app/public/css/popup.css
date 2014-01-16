@@ -1,3 +1,15 @@
+.popup-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  max-width: 1920px;
+  height: 150px;
+  margin: 0 auto;
+  padding: 0;
+}
+
 div[role='popup'] {
   position: fixed;
   bottom: 0;

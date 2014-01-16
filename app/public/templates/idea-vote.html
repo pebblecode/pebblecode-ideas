@@ -1,11 +1,11 @@
-<div class="current-idea row no-gutter" ng-model="idea" id="{{idea._id}}">
+<div class="current-idea row no-gutter" ng-model="voteItem" id="{{voteItem._id}}">
 
-  <div class="vote-button no col-m-1" ng-click="castVote('No', idea._id)" leap-swipe-left="castVote('Yes', idea._id)"></div>
+  <div class="vote-button no col-m-1" ng-click="castVote('No', voteItem._id)" leap-swipe-left="castVote('Yes', voteItem._id)"></div>
 
   <div class="idea-text col-m-10 tk-brandon-grotesque">
     {{idea.text}}
   </div>
 
-  <div class="vote-button yes col-m-1" ng-click="castVote('Yes', idea._id)" leap-swipe-right="castVote('No', idea._id)"></div>
+  <div class="vote-button yes col-m-1" ng-click="castVote('Yes', voteItem._id)" leap-swipe-right="castVote('No', voteItem._id)"></div>
 
 </div>

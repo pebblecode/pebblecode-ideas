@@ -1,8 +1,8 @@
 angular.module('pebbleidea',
-  ['angular-leap', 'ngRoute', 'ui.bootstrap', 'toaster', 'ngAnimate'])
+  ['angular-leap', 'ngAnimate'])
   .config(function() {
     'use strict';
-    
+
   })
   .run(['$rootScope', function($rootScope) {
     'use strict';
@@ -11,6 +11,11 @@ angular.module('pebbleidea',
     $rootScope.socket = new Primus({
       host: window.location.hostname,
       port: window.location.port
+    });
+
+    // Generic error handler
+    $rootScope.socket.on('error', function(error) {
+      console.error(error);
     });
 
   }]);

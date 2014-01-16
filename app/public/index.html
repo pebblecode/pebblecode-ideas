@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="/vendor/responsive/rel/responsive.css" />
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/ideas.css">
+    <link rel="stylesheet" href="/css/vote.css">
     <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" href="/css/slide.css">
 
     <script src="/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script>
@@ -23,35 +26,49 @@
       })();
     </script>
   </head>
+
   <body ng-app="pebbleidea" id="app">
-    <div class="wrapper" ng-controller="IdeasCtrl">
 
-      <nav role="navigation">
-        <div class="container">
-          <div class="row logos">
-            <div class="col-m-6 logo pebblecode">
-              <a ng-click="addNewIdea()" href="#">
-                <img src="/images/pebblecode-logo.svg" width="235px" height="60px" />
-              </a>
-            </div>
-            <div class="col-m-6 logo az">
-              <a ng-click="fullScreen()" href="#">
-                <img src="/images/az-logo.svg" width="235px" height="60px" />
-              </a>
-            </div>
-          </div>
+    <nav role="navigation">
+      <div class="logos clearfix">
+        <div class="logo pebblecode">
+          <a ng-click="addNewIdea()" href="#">
+            <img src="/images/pebblecode-logo.svg" width="235px" height="60px" />
+          </a>
         </div>
-      </nav>
-
-      <main role="application" class="container" leap-swipe-up="nextIdea()" leap-swipe-down="prevIdea()">
-        <div class="idea row" ng-repeat="idea in displayItems()" ng-animate="'ideas'">
-          <div class="idea-text tk-museo-sans col-m-12">{{idea.text}}</div>
+        <div class="logo az">
+          <a ng-click="fullScreen()" href="#">
+            <img src="/images/az-logo.svg" width="235px" height="60px" />
+          </a>
         </div>
-      </main>
+      </div>
+    </nav>
 
-      <idea-vote idea="currentIdea()"></idea-vote>
+    <main class="ideas clearfix" role="application" ng-controller="IdeasCtrl">
+      <div class="idea" ng-repeat="idea in getDisplayItems()" ng-animate="'ideas'">
+        <div class="idea-text tk-museo-sans">{{idea.text}}</div>
+      </div>
+    </main>
 
-      <div role="popup" class="tk-museo-sans clearfix" ng-if="newIdeaRecieved == false">
+    <!-- The current idea being voted on -->
+    <section class="vote clearfix" ng-controller="VoteCtrl"
+      leap-swipe-up="nextIdea()" leap-swipe-down="prevIdea()"
+      leap-swipe-left="voteNo()" leap-swipe-right="voteYes()">
+
+      <div ng-class="{'yes': votedYes, 'no': votedNo}" class="vote-caster clearfix" id="{{voteItem._id}}" ng-if="!voteCast">
+        <div class="vote-button no col-m-1" ng-click="voteNo()"></div>
+
+        <div class="idea-text col-m-10 tk-brandon-grotesque">
+          {{voteItem.text}}
+        </div>
+
+        <div class="vote-button yes col-m-1" ng-click="voteYes()" ></div>
+      </div>
+    </section>
+    <!-- // end the current item being voted on -->
+
+    <section class="popup-container" ng-controller="PopupCtrl">
+      <div role="popup" class="tk-museo-sans clearfix" ng-if="!newIdea">
 
         <section class="img">
           <img src="/images/phone.svg" />
@@ -62,7 +79,7 @@
         </section>
       </div>
 
-      <div role="popup" class="tk-museo-sans clearfix" ng-if="newIdeaRecieved == true">
+      <div role="popup" class="tk-museo-sans clearfix" ng-if="newIdea">
 
         <section class="img">
           <img src="/images/phone.svg" />
@@ -70,41 +87,40 @@
 
         <section class="text">
           A new idea has been added!<br />
-          {{newIdeaAdded.text}} from {{newIdeaAdded.submittedDisplay}}<br />
+          {{newIdea.text}} from {{newIdea.submittedDisplay}}<br />
           You can now vote on it.
         </section>
       </div>
+    </section>
 
-      <script type="text/ng-template" id="add-new-idea-form.html">
-        <div class="modal-header">
-          <h3>Add New Idea</h3>
-        </div>
+    <script type="text/ng-template" id="add-new-idea-form.html">
+      <div class="modal-header">
+        <h3>Add New Idea</h3>
+      </div>
 
-        <div class="modal-body">
-          <form>
-            <div class="form-item">
-              <label for="">Your Name</label>
-              <input type="text" ng-model="form.submittedDisplay" />
-            </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-item">
+            <label for="">Your Name</label>
+            <input type="text" ng-model="form.submittedDisplay" />
+          </div>
 
-            <div class="form-item">
-              <label for="">Your Mobile Number</label>
-              <input type="text" ng-model="form.submittedFrom" placeholder="+44" />
-            </div>
+          <div class="form-item">
+            <label for="">Your Mobile Number</label>
+            <input type="text" ng-model="form.submittedFrom" placeholder="+44" />
+          </div>
 
-            <div class="form-item">
-              <label for="">Your Idea</label>
-              <textarea ng-model="form.text"></textarea>
-            </div>
-        </div>
+          <div class="form-item">
+            <label for="">Your Idea</label>
+            <textarea ng-model="form.text"></textarea>
+          </div>
+      </div>
 
-        <div class="modal-footer">
-          <button ng-click="ok()" class="btn btn-primary">Add New Idea</button>
-          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
-      </script>
-
-    </div>
+      <div class="modal-footer">
+        <button ng-click="ok()" class="btn btn-primary">Add New Idea</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      </div>
+    </script>
 
     <script src="/primus/primus.js"></script>
     <script src="/vendor/jquery/jquery.min.js"></script>
@@ -112,13 +128,8 @@
     <script src="/vendor/leapjs/leap.js"></script>
 
     <script src="/vendor/angular/angular.js"></script>
-    <script src="/vendor/angular-route/angular-route.js"></script>
     <script src="/vendor/angular-animate/angular-animate.js"></script>
-    <script src="/vendor/AngularJS-Toaster/toaster.js"></script>
     <script src="/vendor/angular-leap/build/angular-leap.js"></script>
-    <script src="/vendor/angular-ui/build/angular-ui.js"></script>
-    <script src="/vendor/angular-ui-bootstrap/dist/ui-bootstrap-0.9.0.js"></script>
-    <script src="/vendor/angular-ui-bootstrap/dist/ui-bootstrap-tpls-0.9.0.js"></script>
 
     <script src="/js/main.js"></script>
     <script src="/js/services/PrimusService.js"></script>
@@ -127,7 +138,8 @@
 
     <script src="/js/controllers/AddIdeaCtrl.js"></script>
     <script src="/js/controllers/IdeasCtrl.js"></script>
+    <script src="/js/controllers/PopupCtrl.js"></script>
+    <script src="/js/controllers/VoteCtrl.js"></script>
 
-    <script src="/js/directives/IdeaVote.js"></script>
   </body>
 </html>

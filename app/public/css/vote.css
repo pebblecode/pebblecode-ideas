@@ -1,0 +1,33 @@
+.vote {
+  position: static;
+  max-width: 1920px;
+}
+
+.vote .idea-text {
+  background-color: #EE5080;
+  color: #fff;
+  height: 200px;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 40px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.vote .vote-button {
+  height: 200px;
+}
+
+.vote .vote-button.no {
+  background-size: contain;
+  background-image: url('/images/no-2.svg');
+  background-repeat: no-repeat;
+  background-position: 12px center;
+}
+
+.vote .vote-button.yes {
+  background-size: contain;
+  background-image: url('/images/yes-2.svg');
+  background-repeat: no-repeat;
+  background-position: -12px center;
+}
