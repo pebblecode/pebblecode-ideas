@@ -1,0 +1,27 @@
+nav[role='navigation'] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: transparent;
+  background-image: url('/images/nav-bg.svg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  height: 150px;
+  max-width: 1920px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+nav[role='navigation'] .logo {
+  vertical-align: middle;
+}
+
+nav[role='navigation'] .logo.pebblecode {
+  padding-top: 17px;
+}
+
+nav[role='navigation'] .logo.az {
+  text-align: right;
+}
