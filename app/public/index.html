@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="/vendor/responsive/rel/responsive.css" />
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/popup.css">
 
     <script src="/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script>
@@ -28,7 +29,7 @@
         <div class="container">
           <div class="row logos">
             <div class="col-m-6 logo pebblecode">
-              <a ng-click='addNewIdea()' href="#">
+              <a ng-click="addNewIdea()" href="#">
                 <img src="/images/pebblecode-logo.svg" width="235px" height="60px" />
               </a>
             </div>
@@ -40,59 +41,38 @@
           </div>
         </div>
       </nav>
-      <!--<div class="slanted-bottom"></div>-->
 
-      <main role="application" class="container">
+      <main role="application" class="container" leap-swipe-up="nextIdea()" leap-swipe-down="prevIdea()">
         <div class="idea row" ng-repeat="idea in displayItems()" ng-animate="'ideas'">
           <div class="idea-text tk-museo-sans col-m-12">{{idea.text}}</div>
         </div>
-        <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}"> </toaster-container>
-
       </main>
 
+      <idea-vote idea="currentIdea()"></idea-vote>
 
-      <idea-vote idea="currentIdea()" ng-animate="'slide-vote'"></idea-vote>
+      <div role="popup" class="tk-museo-sans clearfix" ng-if="newIdeaRecieved == false">
 
-      <!--
-      <div class="current-idea row no-gutter" id="{{currentIdea()._id}}" leap-swipe-left="castVote('Yes', currentIdea()._id)" leap-swipe-right="castVote('No', currentIdea()._id)">
-        <div class="vote-button no col-m-1" ng-click="castVote('No', currentIdea()._id)">
+        <section class="img">
+          <img src="/images/phone.svg" />
+        </section>
 
-        </div>
-
-        <div class="idea-text col-m-10 tk-brandon-grotesque">
-          {{currentIdea().text}}
-        </div>
-
-        <div class="vote-button yes col-m-1" ng-click="castVote('Yes', currentIdea()._id)">
-
-        </div>
+        <section class="text">
+          <p>Text [Idea] @ [Your Name] to 01887 451 030</p>
+        </section>
       </div>
-      -->
 
-      <footer role="footer" class="container toaster" ng-if="newIdeaRecieved == false">
+      <div role="popup" class="tk-museo-sans clearfix" ng-if="newIdeaRecieved == true">
 
-        <section class="row sms-details no-gutter tk-museo-sans">
-          <div class="col-m-12 outer">
-            <div class="inner clearfix">
-              <img src="/images/phone.svg" />
-              <p>Text [Idea] @ [Your Name] to 01887 451 030</p>
-            </div>
-          </div>
+        <section class="img">
+          <img src="/images/phone.svg" />
         </section>
-      </footer>
 
-      <footer role="footer" class="container toaster" ng-if="newIdeaRecieved == true">
-        <section class="row new-message no-gutter tk-museo-sans">
-          <div class="col-m-12 outer">
-            <div class="inner clearfix">
-              <img src="/images/phone.svg" />
-              <p>A new idea has been added!</p>
-              <p>{{newIdeaAdded.text}} from {{newIdeaAdded.submittedDisplay}}</p>
-              <p>You can now vote on it.</p>
-            </div>
-          </div>
+        <section class="text">
+          A new idea has been added!<br />
+          {{newIdeaAdded.text}} from {{newIdeaAdded.submittedDisplay}}<br />
+          You can now vote on it.
         </section>
-      </footer>
+      </div>
 
       <script type="text/ng-template" id="add-new-idea-form.html">
         <div class="modal-header">

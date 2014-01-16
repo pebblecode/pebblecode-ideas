@@ -41,14 +41,7 @@ nav[role='navigation'] .logo.az {
   text-align: right;
 }
 
-footer[role='footer'] {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  height: 150px;
-}
+
 
 .idea {
   background: #C7C6CC;
@@ -132,57 +125,28 @@ footer[role='footer'] {
 }
 
 
-
-
-/* Animations */
-
-/** Toaster **/
-.toaster.ng-enter,
-.toaster.ng-leave
-{
-  -webkit-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  -moz-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  -ms-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  -o-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-}
-
-.toaster.ng-enter {
-  bottom: -200px;
-}
-.toaster.ng-enter-active {
-  bottom: 0;
-}
-
-.toaster.ng-leave {
-  bottom: 0;
-}
-.toaster.ng-leave-active{
-  bottom: -200px;
-}
-
-
 /** Vote Slide **/
 .slide-vote {
-  -webkit-transition: 4s all;
-  -moz-transition: 4s all;
-  -ms-transition: 4s all;
-  -o-transition: 4s all;
-  transition: 4s all;
+  -webkit-transition: 4s;
+  -moz-transition: 4s;
+  -ms-transition: 4s;
+  -o-transition: 4s;
+  transition: 4s;
+  z-index: 1000;
 }
 
 .slide-vote.yes-vote-add-active {
-  position: absolute;
-  right: 200px;
+  position: fixed;
+  left: 2000px;
 }
 
 .slide-vote.yes-vote-remove-active {
-  right: 0;
+  left: 0;
 }
 
 .slide-vote.no-vote-add-active {
-  position: absolute;
-  left: 200px;
+  position: fixed;
+  right: 2000px;
 }
 
 .slide-vote.no-vote-remove-active {

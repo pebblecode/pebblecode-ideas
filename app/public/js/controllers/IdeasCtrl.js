@@ -62,11 +62,23 @@ angular.module('pebbleidea')
       });
     };
 
+    // TODO: Add functionality to skip though ideas without voting
+
+    $scope.nextIdea = function() {
+      if ($scope.currentIdeaIndex++ >= $scope.ideas().length - 1) {
+        $scope.currentIdeaIndex = 0;
+      }
+    };
+
+    $scope.prevIdea = function() {
+      if ($scope.currentIdeaIndex-- < 0) {
+        $scope.currentIdeaIndex = $scope.ideas().length - 1;
+      }
+    };
+
     $scope.$on('castVote', function(event, data) {
       $Vote.castVote(data).then(function(updatedVote) {
-        if ($scope.currentIdeaIndex++ >= $scope.ideas().length - 1) {
-          $scope.currentIdeaIndex = 0;
-        }
+        $scope.nextIdea();
       });
     });
 
