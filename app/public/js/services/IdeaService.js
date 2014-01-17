@@ -20,7 +20,7 @@ angular.module('pebbleidea')
     });
 
     $Primus.on('insert', function(idea) {
-      IdeasService.addIdea(idea);
+      IdeasService.ideas.push(idea);
       $rootScope.$broadcast('insert', idea);
     });
 
