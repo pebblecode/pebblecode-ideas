@@ -38,24 +38,9 @@
     <!-- // Idea Display Container -->
 
     <!-- The current idea being voted on -->
-    <section class="vote" ng-controller="VoteCtrl"
+    <section ng-include src="'/includes/vote-caster.html'" class="vote" ng-controller="VoteCtrl"
       leap-swipe-up="skipVoteNext()" leap-swipe-down="skipVotePrev()"
       leap-swipe-left="voteNo()" leap-swipe-right="voteYes()">
-
-      <div class="container">
-        <div class="row">
-          <div class="vote-button no" ng-click="voteNo()"></div>
-          <div class="vote-button yes" ng-click="voteYes()" ></div>
-
-          <div class="col-l-12">
-            <div class="vote-caster clearfix" id="{{voteItem._id}}">
-              <div class="idea-text tk-brandon-grotesque">
-                {{voteItem.text}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     <!-- // end the current item being voted on -->
 

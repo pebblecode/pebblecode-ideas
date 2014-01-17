@@ -4,6 +4,22 @@
 }
 */
 
+.vote.ng-enter {
+  -webkit-transition: 4000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -moz-transition: 4000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -ms-transition: 4000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -o-transition: 4000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  transition: 4000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+}
+
+.vote.ng-enter {
+  opacity: 0;
+}
+
+.vote.ng-enter-active {
+  opacity: 1;
+}
+
 .vote .vote-caster {
   width: 100%;
   position: relative;

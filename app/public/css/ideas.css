@@ -2,33 +2,15 @@ main[role='idea-container'] {
   margin-top: 100px;
 }
 
+main[role='idea-container'] .ideas {
+  overflow: hidden;
+  max-height: 480px;
+}
+
 main[role='idea-container'] .idea {
   background: #C7C6CC;
   height: 100px;
   margin-bottom: 20px;
-}
-
-main[role='idea-container'] .idea.ng-enter,
-main[role='idea-container'] .idea.ng-leave {
-  -webkit-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  -moz-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  -ms-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  -o-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-}
-
-main[role='idea-container'] .idea.ng-enter {
-  bottom: -200px;
-}
-main[role='idea-container'] .idea.ng-enter-active {
-  bottom: 0;
-}
-
-main[role='idea-container'] .idea.ng-leave {
-  bottom: 0;
-}
-main[role='idea-container'] .idea.ng-leave-active{
-  bottom: -200px;
 }
 
 .ideas-include.ng-enter {
@@ -46,6 +28,41 @@ main[role='idea-container'] .idea.ng-leave-active{
 .ideas-include.ng-enter-active {
   opacity: 1;
 }
+
+.idea-inner.ng-enter,
+.idea-inner.ng-leave {
+  -webkit-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -moz-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -ms-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -o-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+}
+
+.idea-inner.ng-enter {
+  opacity: 0;
+  height: 0;
+}
+
+.idea-inner.ng-enter-active {
+  opacity: 1;
+  height: 100px;
+}
+
+.idea-inner.ng-enter-stagger {
+  -webkit-transition-delay: 3s;
+  transition-delay: 3s;
+}
+
+.idea-inner.ng-leave {
+  opacity: 1;
+  height: 100px;
+}
+
+.idea-inner.ng-leave-active {
+  opacity: 0;
+  height: 0;
+}
+
 
 /*.ideas {
   position: static;

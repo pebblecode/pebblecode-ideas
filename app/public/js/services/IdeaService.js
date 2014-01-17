@@ -33,6 +33,14 @@ angular.module('pebbleidea')
       return ideas.reverse();
     };
 
+    IdeasService.getNextDisplayIdea = function(count) {
+      var idea = IdeasService.ideas[IdeasService.currentVoteIndex + 1 + count];
+      if (!idea) {
+        idea = IdeasService.ideas[0];
+      }
+      return idea;
+    }
+
     // This is the item currently in the vote section
     IdeasService.getCurrentVoteItem = function() {
       var idea = IdeasService.ideas[IdeasService.currentVoteIndex];
