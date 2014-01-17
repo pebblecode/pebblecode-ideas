@@ -40,7 +40,7 @@
     <!-- The current idea being voted on -->
     <section ng-include src="'/includes/vote-caster.html'" class="vote" ng-controller="VoteCtrl"
       leap-swipe-up="skipVoteNext()" leap-swipe-down="skipVotePrev()"
-      leap-swipe-left="voteNo()" leap-swipe-right="voteYes()">
+      leap-swipe-right="voteNo()" leap-swipe-left="voteYes()" ng-class="{'yes-vote':'yes-vote','no-vote':'no-vote', '': ''}[voteType]">
     </section>
     <!-- // end the current item being voted on -->
 
