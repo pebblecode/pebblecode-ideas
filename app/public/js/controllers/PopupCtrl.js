@@ -3,8 +3,6 @@ angular.module('pebbleidea')
 
     $scope.newIdea = false;
 
-    $scope.newIdea = false;
-
     $scope.$on('insert', function(event, idea) {
       $scope.newIdea = idea;
       $timeout(function() {
@@ -12,4 +10,4 @@ angular.module('pebbleidea')
       }, 5000);
     });
 
-  }])
+  }]);

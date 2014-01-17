@@ -1,0 +1,28 @@
+<script type="text/ng-template" id="add-new-idea-form.html">
+  <div class="modal-header">
+    <h3>Add New Idea</h3>
+  </div>
+
+  <div class="modal-body">
+    <form>
+      <div class="form-item">
+        <label for="">Your Name</label>
+        <input type="text" ng-model="form.submittedDisplay" />
+      </div>
+
+      <div class="form-item">
+        <label for="">Your Mobile Number</label>
+        <input type="text" ng-model="form.submittedFrom" placeholder="+44" />
+      </div>
+
+      <div class="form-item">
+        <label for="">Your Idea</label>
+        <textarea ng-model="form.text"></textarea>
+      </div>
+  </div>
+
+  <div class="modal-footer">
+    <button ng-click="ok()" class="btn btn-primary">Add New Idea</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+</script>

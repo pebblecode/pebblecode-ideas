@@ -1,4 +1,37 @@
-.ideas {
+main[role='idea-container'] {
+  margin-top: 100px;
+}
+
+main[role='idea-container'] .idea {
+  background: #C7C6CC;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+main[role='idea-container'] .idea.ng-enter,
+main[role='idea-container'] .idea.ng-leave {
+  -webkit-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -moz-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -ms-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -o-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+}
+
+main[role='idea-container'] .idea.ng-enter {
+  bottom: -200px;
+}
+main[role='idea-container'] .idea.ng-enter-active {
+  bottom: 0;
+}
+
+main[role='idea-container'] .idea.ng-leave {
+  bottom: 0;
+}
+main[role='idea-container'] .idea.ng-leave-active{
+  bottom: -200px;
+}
+
+/*.ideas {
   position: static;
   max-width: 1920px;
   margin-top: 100px;
@@ -16,4 +49,4 @@
   padding: 0 28px;
   font-weight: 500;
   font-size: 28px;
-}
+}*/

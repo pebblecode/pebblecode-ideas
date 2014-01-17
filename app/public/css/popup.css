@@ -17,11 +17,27 @@ div[role='popup'] {
   right: 0;
   z-index: 1000;
   height: 150px;
-  width: 1140px;
   margin: 0 auto;
   background-color: #29ABE2;
 }
 
+div[role='popup'] .img,
+div[role='popup'] .text {
+  text-align: center;
+  height: 150px;
+}
+
+div[role='popup'] .text {
+  color: #fff;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+div[role='popup'] .text p {
+  margin: 10px auto 10px;
+}
+
+/*
 div[role='popup'] .img {
   width: 150px;
   height: 150px;
@@ -41,7 +57,7 @@ div[role='popup'] .text {
   font-weight: 900;
   font-size: 30px;
   text-align: center;
-}
+}*/
 
 div[role='popup'].ng-enter,
 div[role='popup'].ng-leave

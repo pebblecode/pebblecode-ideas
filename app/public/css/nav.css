@@ -8,24 +8,18 @@ nav[role='navigation'] {
   background-image: url('/images/nav-bg.svg');
   background-position: bottom;
   background-repeat: no-repeat;
-  height: 150px;
+  min-height: 150px;
   max-width: 1920px;
   margin: 0 auto;
   color: #fff;
 }
 
 nav[role='navigation'] .logo {
-  width: 50%;
+  padding-top: 25px;
   height: 100px;
-  float: left;
-}
-
-nav[role='navigation'] .logo a {
   display: block;
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
+  margin: 0 auto;
+
 }
 
 nav[role='navigation'] .logo.pebblecode {

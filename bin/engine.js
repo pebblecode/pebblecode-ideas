@@ -52,7 +52,7 @@ module.exports = function(app, db, collection, clients) {
         }
 
         clients.forEach(function(client) {
-          client.send('insert', docs);
+          client.send('insert', docs[0]);
         });
       });
     });

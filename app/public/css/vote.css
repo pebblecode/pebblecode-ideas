@@ -1,6 +1,12 @@
-.vote {
+/*.vote {
   position: static;
   max-width: 1920px;
+}
+*/
+
+.vote .vote-caster {
+  width: 100%;
+  position: relative;
 }
 
 .vote .idea-text {
@@ -16,6 +22,9 @@
 
 .vote .vote-button {
   height: 200px;
+  width: 150px;
+  position: absolute;
+
 }
 
 .vote .vote-button.no {
@@ -23,6 +32,7 @@
   background-image: url('/images/no-2.svg');
   background-repeat: no-repeat;
   background-position: 12px center;
+  left: 280px;
 }
 
 .vote .vote-button.yes {
@@ -30,4 +40,5 @@
   background-image: url('/images/yes-2.svg');
   background-repeat: no-repeat;
   background-position: -12px center;
+  right: 240px;
 }
