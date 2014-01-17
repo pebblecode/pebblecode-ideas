@@ -1,36 +1,34 @@
-<section class="popup-container" ng-controller="PopupCtrl">
-  <div class="container clearfix">
-    <div class="row">
-      <div class="col-l-12">
+<div class="container clearfix">
+  <div class="row">
+    <div class="col-l-12">
 
-        <div role="popup" class="tk-museo-sans container" ng-if="!newIdea">
-          <div class="row">
-            <section class="img col-l-2">
-              <img src="/images/phone.svg" />
-            </section>
+      <div role="popup" class="tk-museo-sans container" ng-if="!newIdea">
+        <div class="row">
+          <section class="img col-l-2">
+            <img src="/images/phone.svg" />
+          </section>
 
-            <section class="text col-l-10">
-              <p>Text [Idea] @ [Your Name] to 01887 451 030</p>
-            </section>
-          </div>
+          <section class="text col-l-10">
+            <p>Text [Idea] @ [Your Name] to 01887 451 030</p>
+          </section>
         </div>
       </div>
+    </div>
 
-      <div class="col-l-12">
-        <div role="popup" class="tk-museo-sans container" ng-if="newIdea">
-          <div class="row">
-            <section class="img col-l-2">
-              <img src="/images/phone.svg" />
-            </section>
+    <div class="col-l-12">
+      <div role="popup" class="tk-museo-sans container" ng-if="newIdea">
+        <div class="row">
+          <section class="img col-l-2">
+            <img src="/images/phone.svg" />
+          </section>
 
-            <section class="text col-l-10">
-              A new idea has been added!<br />
-              {{newIdea.text}} from {{newIdea.submittedDisplay}}<br />
-              You can now vote on it.
-            </section>
-          </div>
+          <section class="text col-l-10">
+            A new idea has been added!<br />
+            {{newIdea.text}} from {{newIdea.submittedDisplay}}<br />
+            You can now vote on it.
+          </section>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>

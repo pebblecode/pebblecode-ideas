@@ -30,19 +30,11 @@
   <body ng-app="pebbleidea" id="app">
 
     <!-- Navigation Container -->
-    <ng-include src="'/includes/navigation.html'"></ng-include>
+    <nav ng-include src="'/includes/navigation.html'" class="nav-include clearfix" role="navigation"></nav>
     <!-- // Navigation Container -->
 
     <!-- Idea Display Container -->
-    <main role="idea-container" ng-controller="IdeasCtrl">
-      <section class="ideas container clearfix">
-        <div class="row" ng-repeat="idea in displayIdeas">
-          <div class="idea col-l-12">
-            <p class="idea-text tk-museo-sans">{{idea.text}}</p>
-          </div>
-        </div>
-      </section>
-    </main>
+    <main ng-include src="'/includes/ideas-list.html'" class="ideas-include clearfix" role="idea-container" ng-controller="IdeasCtrl"></main>
     <!-- // Idea Display Container -->
 
     <!-- The current idea being voted on -->
@@ -67,7 +59,7 @@
     </section>
     <!-- // end the current item being voted on -->
 
-    <ng-include src="'/includes/popup.html'"></ng-include>
+    <section ng-include src="'/includes/popup.html'" class="popup-container" ng-controller="PopupCtrl"></section>
     <ng-include src="'/includes/new-idea.html'"></ng-include>
 
 
