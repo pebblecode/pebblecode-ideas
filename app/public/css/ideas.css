@@ -8,7 +8,8 @@ main[role='idea-container'] .ideas {
 }
 
 main[role='idea-container'] .idea {
-  background: #C7C6CC;
+  border-radius: 3px;
+  background: #C0C6D3;
   height: 100px;
   margin-bottom: 20px;
 }
@@ -72,6 +73,12 @@ main[role='idea-container'] .idea .delete {
   height: 0;
 }
 
+.idea p {
+  padding: 15px;
+  margin: 0;
+  font-size: 26px;
+  color: #29313D;
+}
 
 /*.ideas {
   position: static;

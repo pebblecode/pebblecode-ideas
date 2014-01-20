@@ -116,19 +116,21 @@
 .vote .idea-text {
   background-color: #EE5080;
   color: #fff;
-  height: 200px;
+  height: 195px;
   font-weight: 900;
   font-style: italic;
   font-size: 40px;
   text-transform: uppercase;
   text-align: center;
+  line-height: 1.1;
+  padding-top: 32px;
 }
 
 .vote .vote-button {
   height: 200px;
   width: 150px;
   position: absolute;
-
+  margin-top: -3px;
 }
 
 .vote .vote-button.no {

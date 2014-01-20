@@ -19,6 +19,8 @@ div[role='popup'] {
   height: 150px;
   margin: 0 auto;
   background-color: #29ABE2;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 div[role='popup'] .img,
@@ -30,11 +32,13 @@ div[role='popup'] .text {
 div[role='popup'] .text {
   color: #fff;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 34px;
+  letter-spacing: 1px;
 }
 
 div[role='popup'] .text p {
-  margin: 10px auto 10px;
+  margin: 0 0 0 -15px;
+  line-height: 150px;
 }
 
 .popup-container.ng-enter {
@@ -98,4 +102,9 @@ div[role='popup'].ng-leave {
 }
 div[role='popup'].ng-leave-active{
   bottom: -200px;
+}
+
+.phone {
+  float: left;
+  margin: 15px;
 }
