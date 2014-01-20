@@ -19,7 +19,7 @@
     Licensed under the MIT License.
     ============================================================================== */
 
-/*! Responsive v2.3.1 | MIT License | git.io/rRNRLA */
+/*! Responsive v2.3.3 | MIT License | git.io/rRNRLA */
 /* All CSS files combined. This should be ran through a preprocessor */
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 
@@ -439,6 +439,14 @@ table {
     box-sizing: border-box !important;
 }
 
+/*
+ * IE10 in Windows (Phone) 8
+ * Support for responsive views via media queries do not work in IE10 on mobile for
+ * versions prior to WP8 Update 3 (GDR3).
+ */
+@-ms-viewport {
+    width: device-width;
+}
 
 /*
  * 1. Use the iOS devices hardware accelerator to provide native scrolling.
@@ -3647,19 +3655,19 @@ pre {
         display: block;
     }
 
-/* Responsive LightBox Base */
+/* Responsive LightBox */
 
 .lightbox-on,
-.lightbox-on body {
+.lightbox-lock-body > body {
     height: 100%;
     overflow: hidden;
 }
-
 
 /* 
  * 1: Average browser max z-index.
  * 2: IE8 transparent background. 
  * 3. Use the iOS devices hardware accelerator to provide native scrolling.
+ * 4. Prevent font rendering issues on webkit.
  */
 .lightbox-overlay {
     position: fixed;
@@ -3675,6 +3683,7 @@ pre {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQI12NgYGDYDAAAuAC0TCbBxgAAAABJRU5ErkJggg==');
     background-repeat: repeat;
     -webkit-overflow-scrolling: touch; /* 3 */
+    -webkit-backface-visibility: hidden; /* 4 */
 }
 
 /*
@@ -3684,7 +3693,6 @@ pre {
     padding: 1px 1em; /* 1 */
     margin: -1px 0; /* 1 */
     width: 100%;
-    background-color: #111;
     color: #fff;
     position: fixed;
     top: 0;
@@ -3765,10 +3773,6 @@ pre {
     overflow: auto;
 }
 
-.lightbox > .media {
-    background-color: #111;
-}
-
 .lightbox > img {
     max-height: 100%;
     max-width: none\9;
@@ -3780,6 +3784,7 @@ pre {
     }
 
 .lightbox > .media {
+    background-color: #111;
     margin: 0 auto;
 }
 

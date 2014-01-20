@@ -71,6 +71,15 @@ module.exports = function(app, db, collection, clients) {
       }
     });
 
+    socket.on('deleteIdea', function(idea, done) {
+      if (!idea._id) {
+        done('No valid ID was passed to delete');
+        return;
+      }
+
+      collection.remove({_id: new ObjectId(idea._id)}, {safe: true}, done);
+    });
+
     // Handle a websocket being closed and remove the old client connection
     socket.on('end', function() {
       var clientsSocketIndex = clients.indexOf(socket);

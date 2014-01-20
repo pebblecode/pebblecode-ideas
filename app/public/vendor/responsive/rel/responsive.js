@@ -19,7 +19,7 @@
     Licensed under the MIT License.
     ============================================================================== */
 
-/*! Responsive v2.3.1 | MIT License | git.io/rRNRLA */
+/*! Responsive v2.3.3 | MIT License | git.io/rRNRLA */
 
 /*
  * Responsive Utils
@@ -30,6 +30,23 @@
 (function ($, w) {
 
     "use strict";
+
+    $(function () {
+
+        // IE10 in Windows (Phone) 8
+        // Support for responsive views via media queries do not work in IE10 on mobile for
+        // versions prior to WP8 Update 3 (GDR3).
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            msViewportStyle.appendChild(
+              document.createTextNode(
+                "@-ms-viewport{width:auto!important}"
+              )
+            );
+            document.querySelector("head").
+              appendChild(msViewportStyle);
+        }
+    });
 
     $.support.getVendorPrefix = (function () {
         /// <summary>Gets the correct vendor prefix for the current browser.</summary>
@@ -111,10 +128,10 @@
             $this = $(this),
             callback = function () { if (!called) { $this.trigger($.support.transition.end); } };
 
-        $this.one($.support.transition.end, function () { called = true; });        
+        $this.one($.support.transition.end, function () { called = true; });
         w.setTimeout(callback, duration);
         return this;
-    }
+    };
 
     $.fn.swipe = function (options) {
         /// <summary>Adds swiping functionality to the given element.</summary>
@@ -404,7 +421,6 @@
                     if (classes) {
                         self.$clone.removeData(classes);
                     }
-
                 };
 
             $.when(clone()).then(this.size());
@@ -772,7 +788,7 @@
         }
 
         // Ensure that transition end is triggered.
-        if (this.$element.find(".next, .prev").length && $.support.transition.end) {
+        if (this.$element.find(".next, .prev").length && $.support.transition) {
             this.$element.trigger($.support.transition.end);
             this.cycle(true);
         }
@@ -1295,6 +1311,7 @@
         $previous = $("<a/>").attr({ "href": "#", "title": "Previous (Left Arrow)" }).addClass("lightbox-direction left hidden"),
         $next = $("<a/>").attr({ "href": "#", "title": "Next (Right Arrow)" }).addClass("lightbox-direction right hidden"),
         $placeholder = $("<div/>").addClass("lightbox-placeholder"),
+        scrollbarWidth = 0,
         lastScroll = 0,
         supportTransition = $.support.transition,
         keys = {
@@ -1565,6 +1582,16 @@
                     else if ($content) {
                         $lightbox.css("max-height", childHeight);
                         $content.css("max-height", childHeight);
+
+                        // Prevent IEMobile10 scrolling when content overflows the lightbox.
+                        // This causes the content to jump behind the model but it's all I can
+                        // find for now.
+                        if ($content && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+
+                            if ($content.children("*:first")[0].scrollHeight > $lightbox.height()) {
+                                $html.addClass("lightbox-lock-body");
+                            }
+                        }
                     }
                     else {
 
@@ -1604,8 +1631,20 @@
 
                     bottom = top + $child.height();
 
+                    var getTopMargin = function () {
+                        if (bottomHeight > 1 && top > margin && windowHeight - bottom < bottomHeight) {
+                            var newMargin = ((top - margin) * -2) + 4;
+
+                            if ((newMargin * -1) + childHeight < windowHeight - bottom) {
+                                return newMargin;
+                            }
+                        }
+
+                        return fallback;
+                    };
+
                     $lightbox.css({
-                        "margin-top": bottomHeight > 1 && top > margin && windowHeight - bottom < bottomHeight ? ((top - margin) * -2) + 4 : fallback
+                        "margin-top": getTopMargin()
                     });
                 }
             };
@@ -1635,17 +1674,29 @@
 
         var fade = event === "show" ? "addClass" : "removeClass",
             self = this,
+            getScrollbarWidth = function () {
+                var $scroll = $("<div/>").css({ width: 99, height: 99, overflow: "scroll", position: "absolute", top: -9999 });
+                $body.append($scroll);
+                scrollbarWidth = $scroll[0].offsetWidth - $scroll[0].clientWidth;
+                $scroll.remove();
+
+                return scrollbarWidth;
+            },
             complete = function () {
 
                 if (event === "hide") {
                     $overlay.addClass("hidden");
-                    $html.removeClass("lightbox-on");
+                    $html.removeClass("lightbox-on")
+                         .css("margin-right", "");
 
-                    if (lastScroll !== $window.scrollTop) {
-                        $window.scrollTop(lastScroll);
-                        lastScroll = 0;
+                    if ($html.hasClass("lightbox-lock-body")) {
+
+                        $html.removeClass("lightbox-lock-body");
+                        if (lastScroll !== $window.scrollTop()) {
+                            $window.scrollTop(lastScroll);
+                            lastScroll = 0;
+                        }
                     }
-
                     return;
                 }
 
@@ -1675,7 +1726,10 @@
         if (lastScroll === 0) {
             lastScroll = $window.scrollTop();
         }
-        $html.addClass("lightbox-on");
+
+        // Remove the scrollbar.
+        $html.addClass("lightbox-on")
+             .css("margin-right", getScrollbarWidth());
 
         $overlay.removeClass("hidden")
             .redraw()[fade]("fade-in")
@@ -1798,6 +1852,7 @@
                 newTarget.length ? newTarget.focus() : $close.focus();
                 return false;
             }
+            return true;
         });
 
     };

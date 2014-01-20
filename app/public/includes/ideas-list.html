@@ -2,6 +2,10 @@
   <div class="row idea-inner" ng-repeat="idea in displayIdeas">
     <div class="idea col-l-12">
       <p class="idea-text tk-museo-sans">{{idea.text}}</p>
+
+      <a class="delete" href="#" ng-click="delete($index, idea)">X</a>
     </div>
+
+
   </div>
 </section>

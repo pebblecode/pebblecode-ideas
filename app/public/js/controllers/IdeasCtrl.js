@@ -16,4 +16,11 @@ angular.module('pebbleidea')
       $scope.displayIdeas = $Ideas.getDisplayIdeas($scope.totalIdeasToDisplay);
     });
 
+    $scope.delete = function(index, idea) {
+      $Ideas.delete(index, idea)
+      .then(function() {
+        $scope.displayIdeas = $Ideas.getDisplayIdeas($scope.totalIdeasToDisplay);
+      })
+    }
+
   }]);

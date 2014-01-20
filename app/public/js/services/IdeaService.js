@@ -1,7 +1,7 @@
 angular.module('pebbleidea')
   .factory('$Ideas',
-  ['$Primus', '$rootScope',
-  function($Primus, $rootScope) {
+  ['$Primus', '$rootScope', '$q',
+  function($Primus, $rootScope, $q) {
     'use strict';
 
     var IdeasService = {};
@@ -63,6 +63,23 @@ angular.module('pebbleidea')
         IdeasService.currentVoteIndex = IdeasService.ideas.length - 1;
       }
     };
+
+    IdeasService.delete = function(index, idea) {
+      var deferred = $q.defer();
+
+      $Primus.send('deleteIdea', idea, function(err) {
+        if (err) {
+          deferred.reject(err);
+          return;
+        }
+
+        IdeasService.ideas.splice(index, 1);
+
+        deferred.resolve();
+      });
+
+      return deferred.promise;
+    }
 
     return IdeasService;
 
