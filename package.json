@@ -19,7 +19,8 @@
     "engine.io-client": "~0.8.0",
     "primus": "~1.5.2",
     "primus-redis": "~0.1.1-1",
-    "primus-emitter": "~2.0.5"
+    "primus-emitter": "~2.0.5",
+    "twilio": "~1.5.0"
   },
   "devDependencies": {
     "matchdep": "~0.1.2",
