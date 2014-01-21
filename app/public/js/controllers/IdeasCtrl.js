@@ -1,7 +1,7 @@
 angular.module('pebbleidea')
   .controller('IdeasCtrl',
-  ['$scope', '$rootScope', '$Ideas',
-  function($scope, $rootScope, $Ideas) {
+  ['$scope', '$rootScope', '$Ideas', '$timeout',
+  function($scope, $rootScope, $Ideas, $timeout) {
     'use strict';
 
     $scope.totalIdeasToDisplay = 4;
@@ -13,7 +13,9 @@ angular.module('pebbleidea')
     });
 
     $rootScope.$on('castVote', function() {
-      $scope.displayIdeas = $Ideas.getDisplayIdeas($scope.totalIdeasToDisplay);
+      $timeout(function() {
+        $scope.displayIdeas = $Ideas.getDisplayIdeas($scope.totalIdeasToDisplay);
+      }, 2000);
     });
 
     $scope.delete = function(index, idea) {

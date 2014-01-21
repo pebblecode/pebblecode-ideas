@@ -23,6 +23,10 @@ div[role='popup'] {
   border-top-right-radius: 3px;
 }
 
+div[role='popup'] .second {
+  background-color: #EE5080;
+}
+
 div[role='popup'] .img,
 div[role='popup'] .text {
   text-align: center;

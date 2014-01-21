@@ -26,11 +26,11 @@
 
 .yes-vote,
 .no-vote {
-  -webkit-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  -moz-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  -ms-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  -o-transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
-  transition: 1000ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -webkit-transition: 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -moz-transition: 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -ms-transition: 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  -o-transition: 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
+  transition: 500ms cubic-bezier(0.445, 0.050, 0.550, 0.950) all;
 }
 
 .yes-vote {
@@ -42,71 +42,6 @@
   opacity: 0;
   right: 1700px;
 }
-
-/*.yes-vote-add {
-  opacity: 1;
-  right: 0
-}
-
-.yes-vote-add-active {
-  opacity: 0;
-  right: -1700px;
-}
-
-.yes-vote-remove {
-  opacity: 0;
-  right: -1700px;
-}
-
-.yes-vote-remove-active {
-  opacity: 1;
-  right: 0
-}
-
-.no-vote-add {
-  opacity: 0;
-  right: 1700px;
-}
-
-.no-vote-add-active {
-  opacity: 1;
-  right: 0;
-}*/
-
-/*.yes-vote.yes-vote-add {
-  opacity: 0;
-  right: -1700px;
-}
-.yes-vote.yes-vote-add-active {
-  opacity: 1;
-  right: 0;
-}
-.yes-vote.yes-vote-remove {
-  opacity: 1;
-  right: 0;
-}
-.yes-vote.yes-vote-remove-active {
-  opacity: 0;
-  right: -1700px;
-}
-
-.yes-vote.ng-enter {
-  opacity: 0;
-  right: -1700px;
-}
-.yes-vote.ng-enter-active {
-  opacity: 1;
-  right: 0;
-}
-.yes-vote.ng-leave {
-  opacity: 1;
-  right: 0;
-}
-.yes-vote.ng-leave-active {
-  opacity: 0;
-  right: -1700px;
-}*/
-
 
 .vote .vote-caster {
   width: 100%;
