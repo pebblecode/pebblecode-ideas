@@ -40,6 +40,10 @@ div[role='popup'] .text {
   letter-spacing: 1px;
 }
 
+div[role='popup'].second .text {
+  font-style: italic;
+}
+
 div[role='popup'] .text p {
   margin: 0 0 0 -15px;
   line-height: 150px;
