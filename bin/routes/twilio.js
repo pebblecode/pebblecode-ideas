@@ -38,9 +38,9 @@ module.exports = function(db, collection, clients) {
       clients.forEach(function(socket) {
         socket.send('insert', docs);
       });
-      
+
       res.set('Content-type', 'text/xml');
-      res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Message>Thank you for submitting your question to pebblecode</Message></Response>');
+      res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Message>Thank you for submitting your idea to pebblecode</Message></Response>');
       res.end();
     });
 
